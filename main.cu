@@ -56,6 +56,12 @@ __global__ void gje_scale_calc(double *m2d, size_t n, size_t cr, double *scl) {
         scl[tid] = m2d[tid+m2d_width+cr] / diag;
 }
 
+__global__ void gje_set_identity(double *m2d,size_t n) {
+    unsigned int tid = threadIdx.x;
+    size_t m2d_width=2*n;
+    m2d[(tid * m2d_width) + (n + tid)] = 1;
+}
+
 int main(int argc, char **argv) {
     size_t n = 0;
     int mode = FROM_FILE;
@@ -94,13 +100,14 @@ int main(int argc, char **argv) {
     cudaMalloc((void **) &m2d, n * m2d_width * sizeof(double));
     for (size_t i = 0; i < n; ++i) {
         cudaMemcpy(m2d + i * m2d_width, &m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
-        m2d[(i * m2d_width) + (n + i)] = 1;
     }
 
     unsigned int grid_dim = (2 * n) / COL_P_BLK + ((2 * n) % COL_P_BLK != 0);
     dim3 BL(BLOCK_DIM);
     dim3 GR(grid_dim);
     cudaMalloc((void **) &scl_d, n * sizeof(double));
+    gje_set_identity<<<dim3(1),BL>>>(m2d,n);
+    cudaDeviceSynchronize();
     for (size_t i = 0; i < n; ++i) {
         gje_scale_calc<<<1, BL>>>(m2d, n, i, scl_d);
         gje_inverse<<<GR, BL, COL_P_BLK * sizeof(double)>>>(m2d, n, i, scl_d);
@@ -109,8 +116,8 @@ int main(int argc, char **argv) {
     for (size_t i = 0; i < n; ++i) {
         cudaMemcpy(&inv_h[i], &m2d[i*m2d_width+n], sizeof(double) * n, cudaMemcpyDeviceToHost);
     }
-    mxfree(m_h, n, free);
-    mxfree(inv_h, n, free);
     print_matrix(inv_h, n, n);
     cout << inverse_test(m_h, inv_h, n);
+    mxfree(m_h, n, free);
+    mxfree(inv_h, n, free);
 }
