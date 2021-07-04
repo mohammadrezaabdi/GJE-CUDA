@@ -97,22 +97,26 @@ int main(int argc, char **argv) {
 
     size_t m2d_width = 2 * n;
     double *m2d = nullptr, *scl_d = nullptr;
-    cudaMalloc((void **) &m2d, n * m2d_width * sizeof(double));
-    for (size_t i = 0; i < n; ++i) {
-        cudaMemcpy(m2d + i * m2d_width, &m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
-    }
+//    cudaMalloc((void **) &m2d, n * m2d_width * sizeof(double));
+//    for (size_t i = 0; i < n; ++i) {
+//        cudaMemcpy(&m2d[i * m2d_width], &m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
+//    }
 
     unsigned int grid_dim = (2 * n) / COL_P_BLK + ((2 * n) % COL_P_BLK != 0);
     dim3 BL(BLOCK_DIM);
     dim3 GR(grid_dim);
-    cudaMalloc((void **) &scl_d, n * sizeof(double));
-    gje_set_identity<<<dim3(1),BL>>>(m2d,n);
-    cudaDeviceSynchronize();
-    for (size_t i = 0; i < n; ++i) {
-        gje_scale_calc<<<1, BL>>>(m2d, n, i, scl_d);
-        gje_inverse<<<GR, BL, COL_P_BLK * sizeof(double)>>>(m2d, n, i, scl_d);
-        cudaDeviceSynchronize();
+    cudaError_t e=cudaMalloc((void **) &scl_d, n * sizeof(double));
+    if (e!=cudaSuccess){
+        cout<<"kirrrrrrrrrrr";
+        cout<<cudaGetErrorString(e);
     }
+//    gje_set_identity<<<dim3(1),BL>>>(m2d,n);
+//    cudaDeviceSynchronize();
+//    for (size_t i = 0; i < n; ++i) {
+//        gje_scale_calc<<<1, BL>>>(m2d, n, i, scl_d);
+//        gje_inverse<<<GR, BL, COL_P_BLK * sizeof(double)>>>(m2d, n, i, scl_d);
+//        cudaDeviceSynchronize();
+//    }
     for (size_t i = 0; i < n; ++i) {
         cudaMemcpy(&inv_h[i], &m2d[i*m2d_width+n], sizeof(double) * n, cudaMemcpyDeviceToHost);
     }
