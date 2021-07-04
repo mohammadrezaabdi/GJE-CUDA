@@ -10,6 +10,9 @@
 #define IS_ZERO(x) (abs(x)<=MARGIN)
 #define NOT_ZERO(x) (abs(x)>MARGIN)
 
+typedef void* malloc_func_t (size_t);
+typedef void free_func_t(void *);
+
 inline void normalize_row(const double *base_row, double *target_row, size_t n, double scale) {
     for (size_t i = 0; i < n; i++) {
         target_row[i] -= base_row[i] * scale;
