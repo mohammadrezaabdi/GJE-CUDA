@@ -1,5 +1,5 @@
 #include <iostream>
-#include<functional>
+#include <functional>
 #include "matrix_utils.cpp"
 #include <cuda_runtime.h>
 
@@ -23,7 +23,8 @@ __device__ void normalize_self(double *self, double scale, size_t n, size_t offs
     }
 }
 
-__global__ void gje_inverse(double **m, size_t n, size_t cr, double *scl) {
+__global__ void gje_inverse(double *m2d, size_t n, size_t cr, double *scl) {
+    size_t m2d_width=2*n;
     extern __shared__ double mr[];
     unsigned int tid = threadIdx.x;
     unsigned int bid = blockIdx.x;
@@ -31,27 +32,28 @@ __global__ void gje_inverse(double **m, size_t n, size_t cr, double *scl) {
 
     if (tid == 0) {
         for (size_t i = 0; i < COL_P_BLK; ++i)
-            mr[i] = m[cr][ofs + i];
+            mr[i] = m2d[(cr*m2d_width)+(ofs + i)];
     }
     __syncthreads();
     if (tid == cr) {
-        normalize_self(m[tid], scl[tid], COL_P_BLK, ofs);
+        normalize_self(&m2d[tid*m2d_width], scl[tid], COL_P_BLK, ofs);
     } else
-        normalize_row(mr, m[tid], scl[tid], COL_P_BLK, 0, ofs);
+        normalize_row(mr, &m2d[tid*m2d_width], scl[tid], COL_P_BLK, 0, ofs);
 }
 
-__global__ void gje_scale_calc(double **m, size_t n, size_t cr, double *scl) {
+__global__ void gje_scale_calc(double *m2d, size_t n, size_t cr, double *scl) {
+    size_t m2d_width=2*n;
     unsigned int tid = threadIdx.x;
     __shared__ double diag;
 
     if (tid == 0)
-        diag = m[cr][cr];
+        diag = m2d[cr*m2d_width+cr];
     __syncthreads();
 
     if (tid == cr)
         scl[tid] = diag;
     else
-        scl[tid] = m[tid][cr] / diag;
+        scl[tid] = m2d[tid+m2d_width+cr] / diag;
 }
 
 int main(int argc, char **argv) {
@@ -87,27 +89,25 @@ int main(int argc, char **argv) {
     }
     print_matrix(m_h, n, n);
 
-    double **m_d = nullptr, *scl_d = nullptr;
-    cudaMalloc((void **) &scl_d, n * sizeof(double));
-    cudaMalloc((void **) &m_d, n * sizeof(double *));
+    size_t m2d_width = 2 * n;
+    double *m2d = nullptr, *scl_d = nullptr;
+    cudaMalloc((void **) &m2d, n * m2d_width * sizeof(double));
     for (size_t i = 0; i < n; ++i) {
-        cudaError_t err = cudaMalloc((void **) &m_d[i], 2 * n * sizeof(double));
-        cout << cudaGetErrorString(err);
-        cudaMemcpy(&m_d[i], m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
-        cudaDeviceSynchronize();
-        m_d[i][n + i] = 1;
+        cudaMemcpy(m2d + i * m2d_width, &m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
+        m2d[(i * m2d_width) + (n + i)] = 1;
     }
 
     unsigned int grid_dim = (2 * n) / COL_P_BLK + ((2 * n) % COL_P_BLK != 0);
     dim3 BL(BLOCK_DIM);
     dim3 GR(grid_dim);
+    cudaMalloc((void **) &scl_d, n * sizeof(double));
     for (size_t i = 0; i < n; ++i) {
-        gje_scale_calc<<<1, BL>>>(m_d, n, i, scl_d);
-        gje_inverse<<<GR, BL, COL_P_BLK * sizeof(double)>>>(m_d, n, i, scl_d);
+        gje_scale_calc<<<1, BL>>>(m2d, n, i, scl_d);
+        gje_inverse<<<GR, BL, COL_P_BLK * sizeof(double)>>>(m2d, n, i, scl_d);
         cudaDeviceSynchronize();
     }
     for (size_t i = 0; i < n; ++i) {
-        cudaMemcpy(&inv_h[i], &m_d[i][n], sizeof(double) * n, cudaMemcpyDeviceToHost);
+        cudaMemcpy(&inv_h[i], &m2d[i*m2d_width+n], sizeof(double) * n, cudaMemcpyDeviceToHost);
     }
     mxfree(m_h, n, free);
     mxfree(inv_h, n, free);
