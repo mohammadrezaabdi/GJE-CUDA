@@ -11,7 +11,7 @@
 #define BLOCK_DIM 1<<10
 #define COL_PER_BLK 3
 
-#define min(a,b) ((a<b)?a:b)
+#define min(a, b) ((a<b)?a:b)
 
 #define MARGIN 1e-8
 #define IS_ZERO(x) (abs(x)<=MARGIN)
@@ -22,16 +22,16 @@ using namespace std;
 
 __device__ void normalize_row(double *target_row, const double *base_row, double scale, size_t n, size_t offset) {
     for (size_t i = 0; i < n; i++) {
-//        target_row[i + offset] = (base_row[i]);
-        double temp=target_row[i + offset] - (base_row[i] * scale);
-        target_row[i + offset]=(IS_ZERO(temp)?0:temp);
+        double temp = target_row[i + offset] - (base_row[i] * scale);
+        target_row[i + offset] = (IS_ZERO(temp) ? 0 : temp);
     }
 }
 
-__device__ void normalize_self(double *self,double const *self_but_in_share_memory, double scale, size_t n, size_t offset) {
+__device__ void
+normalize_self(double *self, double const *self_but_in_share_memory, double scale, size_t n, size_t offset) {
 //    if(n!=3)return;
     for (size_t i = 0; i < n; i++) {
-        self[i + offset] = self_but_in_share_memory[i]/scale;
+        self[i + offset] = self_but_in_share_memory[i] / scale;
     }
 }
 
@@ -42,7 +42,7 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     unsigned int bid = blockIdx.x;
     unsigned int ofs = COL_PER_BLK * bid;
 
-    if(tid>n)return;
+    if (tid > n)return;
 
 
     if (tid == 0) {
@@ -54,7 +54,7 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     if (tid == base_row_index) {
         normalize_self(&m2[tid * m2_width], base_row, scale[tid], COL_PER_BLK, ofs);
     } else
-        normalize_row(&m2[tid * m2_width], base_row , scale[tid], min(n,COL_PER_BLK), ofs);
+        normalize_row(&m2[tid * m2_width], base_row, scale[tid], min(n, COL_PER_BLK), ofs);
 }
 
 __global__ void gje_scale_calc(double *m2d, size_t n, size_t current_row, double *scale) {
@@ -62,12 +62,12 @@ __global__ void gje_scale_calc(double *m2d, size_t n, size_t current_row, double
     unsigned int tid = threadIdx.x;
 
     __shared__ double diag;
-    double base=0;
+    double base = 0;
 
     if (tid == current_row)
         diag = m2d[current_row * m2_width + current_row];
     else
-        base=m2d[tid * m2_width + current_row];
+        base = m2d[tid * m2_width + current_row];
     __syncthreads();
 
     if (tid == current_row)
@@ -144,13 +144,14 @@ int main(int argc, char **argv) {
         cudaDeviceSynchronize();
         double *temp = (double *) malloc(sizeof(double) * n);
         error |= cudaMemcpy(temp, scale_d, sizeof(double) * n, cudaMemcpyDeviceToHost);
-        for (int j = 0; j < n; ++j)cerr<<std::setprecision(2) << temp[j] << "\t";cerr << "\n";
+        for (int j = 0; j < n; ++j)cerr << std::setprecision(2) << temp[j] << "\t";
+        cerr << "\n";
 
         // check matrix before
         for (size_t j = 0; j < n; ++j) {
             error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width], sizeof(double) * n, cudaMemcpyDeviceToHost);
         }
-        cerr<<"print M before:\n";
+        cerr << "print M before:\n";
         print_matrix(inv_h, n, n);
 
 
@@ -161,16 +162,16 @@ int main(int argc, char **argv) {
         for (size_t j = 0; j < n; ++j) {
             error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width], sizeof(double) * n, cudaMemcpyDeviceToHost);
         }
-        cerr<<"print M:\n";
+        cerr << "print M:\n";
         print_matrix(inv_h, n, n);
 
         // check identity matrix
         for (size_t j = 0; j < n; ++j) {
             error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
         }
-        cerr<<"print I:\n";
+        cerr << "print I:\n";
         print_matrix(inv_h, n, n);
-        cerr<<"\n\n\n";
+        cerr << "\n\n\n";
 
 
     }
