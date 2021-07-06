@@ -97,18 +97,19 @@ int main(int argc, char **argv) {
 
     size_t m2d_width = 2 * n;
     double *m2d = nullptr, *scl_d = nullptr;
-    cudaMalloc((void **) &m2d, n * m2d_width * sizeof(double));
+    int error=0;
+    error |=cudaMalloc((void **) &m2d, n * m2d_width * sizeof(double));
     for (size_t i = 0; i < n; ++i) {
-        cudaMemcpy(&m2d[i * m2d_width], &m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
+        error|=cudaMemcpy(&m2d[i * m2d_width], &m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
     }
 
     unsigned int grid_dim = (2 * n) / COL_P_BLK + ((2 * n) % COL_P_BLK != 0);
     dim3 BL(BLOCK_DIM);
     dim3 GR(grid_dim);
-    cudaError_t e=cudaMalloc((void **) &scl_d, n * sizeof(double));
-    if (e!=cudaSuccess){
+    error|=cudaMalloc((void **) &scl_d, n * sizeof(double));
+    if (error!=cudaSuccess){
         cout<<"kirrrrrrrrrrr";
-        cout<<cudaGetErrorString(e);
+        cout<<cudaGetErrorString((cudaError_t)error);
     }
     gje_set_identity<<<dim3(1),BL>>>(m2d,n);
     cudaDeviceSynchronize();
@@ -118,7 +119,11 @@ int main(int argc, char **argv) {
         cudaDeviceSynchronize();
     }
     for (size_t i = 0; i < n; ++i) {
-        cudaMemcpy(inv_h[i], &m2d[i*m2d_width+n], sizeof(double) * n, cudaMemcpyDeviceToHost);
+        error|=cudaMemcpy(inv_h[i], &m2d[i*m2d_width+n], sizeof(double) * n, cudaMemcpyDeviceToHost);
+    }
+    if (error!=cudaSuccess){
+        cout<<"kirrrrrrrrrrr";
+        cout<<cudaGetErrorString((cudaError_t)error);
     }
     print_matrix(inv_h, n, n);
     cout << inverse_test(m_h, inv_h, n);
