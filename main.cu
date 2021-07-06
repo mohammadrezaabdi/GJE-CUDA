@@ -4,7 +4,6 @@
 #include <cuda_runtime.h>
 #include <iomanip>
 
-
 #define RANDOM 1
 #define FROM_FILE 2
 
@@ -29,7 +28,6 @@ __device__ void normalize_row(double *target_row, const double *base_row, double
 
 __device__ void
 normalize_self(double *self, double const *self_but_in_share_memory, double scale, size_t n, size_t offset) {
-//    if(n!=3)return;
     for (size_t i = 0; i < n; i++) {
         self[i + offset] = self_but_in_share_memory[i] / scale;
     }
@@ -51,10 +49,13 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     }
     __syncthreads();
 
+    size_t max_cols=min((2*n)-ofs,3);
+//    size_t max_cols = 3;
+
     if (tid == base_row_index) {
-        normalize_self(&m2[tid * m2_width], base_row, scale[tid], COL_PER_BLK, ofs);
+        normalize_self(&m2[tid * m2_width], base_row, scale[tid], max_cols, ofs);
     } else
-        normalize_row(&m2[tid * m2_width], base_row, scale[tid], min(n, COL_PER_BLK), ofs);
+        normalize_row(&m2[tid * m2_width], base_row, scale[tid], max_cols, ofs);
 }
 
 __global__ void gje_scale_calc(double *m2d, size_t n, size_t current_row, double *scale) {
@@ -116,6 +117,9 @@ int main(int argc, char **argv) {
     }
     print_matrix(m2_h, n, n);
 
+    dim3 block_dim(BLOCK_DIM);
+    dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
+
     size_t m2_width = 2 * n;
     double *m2_d = nullptr, *scale_d = nullptr;
     int error = 0;
@@ -123,8 +127,6 @@ int main(int argc, char **argv) {
     for (size_t i = 0; i < n; i++) {
         error |= cudaMemcpy(m2_d + i * m2_width, m2_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
     }
-    dim3 block_dim(BLOCK_DIM);
-    dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
     error |= cudaMalloc((void **) &scale_d, n * sizeof(double));
     if (error != cudaSuccess) {
         cout << "couldn't allocate memory in device";
@@ -138,6 +140,8 @@ int main(int argc, char **argv) {
 //        error |= cudaMemcpy(inv_h[i], &m2_d[i * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
 //    }
 //    print_matrix(inv_h, n, n);
+    double **temp2_h = mxalloc(n, 2 * n, malloc);
+
     for (size_t i = 0; i < n; i++) {
 
         gje_scale_calc<<<1, block_dim>>>(m2_d, n, i, scale_d);
@@ -149,10 +153,10 @@ int main(int argc, char **argv) {
 
         // check matrix before
         for (size_t j = 0; j < n; ++j) {
-            error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width], sizeof(double) * n, cudaMemcpyDeviceToHost);
+            error |= cudaMemcpy(temp2_h[j], &m2_d[j * m2_width], sizeof(double) * 2 * n, cudaMemcpyDeviceToHost);
         }
         cerr << "print M before:\n";
-        print_matrix(inv_h, n, n);
+        print_matrix(temp2_h, n, 2 * n);
 
 
         gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
@@ -160,17 +164,10 @@ int main(int argc, char **argv) {
 
         // check matrix
         for (size_t j = 0; j < n; ++j) {
-            error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width], sizeof(double) * n, cudaMemcpyDeviceToHost);
+            error |= cudaMemcpy(temp2_h[j], &m2_d[j * m2_width], sizeof(double) * 2 * n, cudaMemcpyDeviceToHost);
         }
         cerr << "print M:\n";
-        print_matrix(inv_h, n, n);
-
-        // check identity matrix
-        for (size_t j = 0; j < n; ++j) {
-            error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
-        }
-        cerr << "print I:\n";
-        print_matrix(inv_h, n, n);
+        print_matrix(temp2_h, n, 2 * n);
         cerr << "\n\n\n";
 
 
