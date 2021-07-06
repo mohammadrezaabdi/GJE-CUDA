@@ -120,19 +120,20 @@ int main(int argc, char **argv) {
     }
     print_matrix(inv_h, n, n);
 
-//int i=0;
-    for (size_t i = 0; i < n; i++) {
+int i=0;
+//    for (size_t i = 0; i < n; i++) {
 
         gje_scale_calc<<<1, block_dim>>>(m2d, n, i, scale_d);
         cudaDeviceSynchronize();
         double *temp = (double *) malloc(sizeof(double) * n);
         error |= cudaMemcpy(temp, scale_d, sizeof(double) * n, cudaMemcpyDeviceToHost);
 
-        for (int i = 0; i < n; ++i)cout<<temp[i]<<"\t";cout<<"\n";
+        for (int i = 0; i < n; ++i)cerr<<temp[i]<<"\t";cerr<<"\n";
 
         gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2d, n, i, scale_d);
         cudaDeviceSynchronize();
-    }
+//    }
+
     for (size_t i = 0; i < n; ++i) {
         error |= cudaMemcpy(inv_h[i], &m2d[i * m2d_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
     }
