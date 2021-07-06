@@ -23,38 +23,41 @@ __device__ void normalize_self(double *self, double scale, size_t n, size_t offs
     }
 }
 
-__global__ void gje_inverse(double *m2d, size_t n, size_t cr, double *scl) {
-    size_t m2d_width = 2 * n;
-    extern __shared__ double mr[];
+__global__ void gje_inverse(double *m2_d, size_t n, size_t current_row, double *scale) {
+    size_t m2_width = 2 * n;
+    extern __shared__ double my_row[];
     unsigned int tid = threadIdx.x;
     unsigned int bid = blockIdx.x;
     unsigned int ofs = COL_PER_BLK * bid;
 
     if (tid == 0) {
-        for (size_t i = 0; i < COL_PER_BLK; ++i)
-            mr[i] = m2d[(cr * m2d_width) + (ofs + i)];
+        for (size_t i = 0; i < COL_PER_BLK; i++)
+            my_row[i] = m2_d[(current_row * m2_width) + (ofs + i)];
     }
     __syncthreads();
-    if (tid == cr) {
-        normalize_self(&m2d[tid * m2d_width], scl[tid], COL_PER_BLK, ofs);
+
+    if (tid == current_row) {
+        normalize_self(&m2_d[tid * m2_width], scale[tid], COL_PER_BLK, ofs);
     } else
-        normalize_row(mr, &m2d[tid * m2d_width], scl[tid], COL_PER_BLK, 0, ofs);
+        normalize_row(my_row, &m2_d[tid * m2_width], scale[tid], COL_PER_BLK, 0, ofs);
 }
 
 __global__ void gje_scale_calc(double *m2d, size_t n, size_t current_row, double *scale) {
-    size_t m2d_width = 2 * n;
+    size_t m2_width = 2 * n;
     unsigned int tid = threadIdx.x;
-//    __shared__
-    double diag;
+    __shared__ double diag;
+    double base=0;
 
-//    if (tid == 0)
-        diag = m2d[current_row * m2d_width + current_row];
-//    __syncthreads();
-//    diag=10.0;
+    if (tid == current_row)
+        diag = m2d[current_row * m2_width + current_row];
+    else
+        base=m2d[tid * m2_width + current_row];
+    __syncthreads();
+
     if (tid == current_row)
         scale[tid] = diag;
     else
-        scale[tid] = m2d[tid * m2d_width + current_row] / diag;
+        scale[tid] = base / diag;
 }
 
 __global__ void gje_set_identity(double *m2d, size_t n) {
