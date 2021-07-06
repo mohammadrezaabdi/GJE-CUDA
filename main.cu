@@ -2,49 +2,65 @@
 #include <functional>
 #include "matrix_utils.cpp"
 #include <cuda_runtime.h>
+#include <iomanip>
+
 
 #define RANDOM 1
 #define FROM_FILE 2
 
 #define BLOCK_DIM 1<<10
-#define COL_PER_BLK 5
+#define COL_PER_BLK 3
+
+#define min(a,b) ((a<b)?a:b)
+
+#define MARGIN 1e-8
+#define IS_ZERO(x) (abs(x)<=MARGIN)
+#define NOT_ZERO(x) (abs(x)>MARGIN)
+
+
 using namespace std;
 
-__device__ void normalize_row(const double *base_row, double *target_row, double scale, size_t n, size_t base_offset,
-                              size_t target_offset) {
+__device__ void normalize_row(double *target_row, const double *base_row, double scale, size_t n, size_t offset) {
     for (size_t i = 0; i < n; i++) {
-        target_row[i + target_offset] -= base_row[i + base_offset] * scale;
+//        target_row[i + offset] = (base_row[i]);
+        double temp=target_row[i + offset] - (base_row[i] * scale);
+        target_row[i + offset]=(IS_ZERO(temp)?0:temp);
     }
 }
 
-__device__ void normalize_self(double *self, double scale, size_t n, size_t offset) {
+__device__ void normalize_self(double *self,double const *self_but_in_share_memory, double scale, size_t n, size_t offset) {
+//    if(n!=3)return;
     for (size_t i = 0; i < n; i++) {
-        self[i + offset] /= scale;
+        self[i + offset] = self_but_in_share_memory[i]/scale;
     }
 }
 
-__global__ void gje_inverse(double *m2_d, size_t n, size_t current_row, double *scale) {
+__global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double *scale) {
     size_t m2_width = 2 * n;
-    extern __shared__ double my_row[];
+    extern __shared__ double base_row[];
     unsigned int tid = threadIdx.x;
     unsigned int bid = blockIdx.x;
     unsigned int ofs = COL_PER_BLK * bid;
 
+    if(tid>n)return;
+
+
     if (tid == 0) {
         for (size_t i = 0; i < COL_PER_BLK; i++)
-            my_row[i] = m2_d[(current_row * m2_width) + (ofs + i)];
+            base_row[i] = m2[(base_row_index * m2_width) + (ofs + i)];
     }
     __syncthreads();
 
-    if (tid == current_row) {
-        normalize_self(&m2_d[tid * m2_width], scale[tid], COL_PER_BLK, ofs);
+    if (tid == base_row_index) {
+        normalize_self(&m2[tid * m2_width], base_row, scale[tid], COL_PER_BLK, ofs);
     } else
-        normalize_row(my_row, &m2_d[tid * m2_width], scale[tid], COL_PER_BLK, 0, ofs);
+        normalize_row(&m2[tid * m2_width], base_row , scale[tid], min(n,COL_PER_BLK), ofs);
 }
 
 __global__ void gje_scale_calc(double *m2d, size_t n, size_t current_row, double *scale) {
     size_t m2_width = 2 * n;
     unsigned int tid = threadIdx.x;
+
     __shared__ double diag;
     double base=0;
 
@@ -67,6 +83,7 @@ __global__ void gje_set_identity(double *m2d, size_t n) {
 }
 
 int main(int argc, char **argv) {
+
     size_t n = 0;
     int mode = FROM_FILE;
     string path;
@@ -106,7 +123,6 @@ int main(int argc, char **argv) {
     for (size_t i = 0; i < n; i++) {
         error |= cudaMemcpy(m2_d + i * m2_width, m2_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
     }
-    cerr<<"error is:"<<error<<"\n";
     dim3 block_dim(BLOCK_DIM);
     dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
     error |= cudaMalloc((void **) &scale_d, n * sizeof(double));
@@ -117,24 +133,46 @@ int main(int argc, char **argv) {
     gje_set_identity<<<dim3(1), block_dim>>>(m2_d, n);
     cudaDeviceSynchronize();
 
-    // check identity matrix
-    for (size_t i = 0; i < n; ++i) {
-        error |= cudaMemcpy(inv_h[i], &m2_d[i * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
-    }
-    print_matrix(inv_h, n, n);
-
-//int i=0;
+//    // check identity matrix
+//    for (size_t i = 0; i < n; ++i) {
+//        error |= cudaMemcpy(inv_h[i], &m2_d[i * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
+//    }
+//    print_matrix(inv_h, n, n);
     for (size_t i = 0; i < n; i++) {
 
         gje_scale_calc<<<1, block_dim>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
         double *temp = (double *) malloc(sizeof(double) * n);
         error |= cudaMemcpy(temp, scale_d, sizeof(double) * n, cudaMemcpyDeviceToHost);
+        for (int j = 0; j < n; ++j)cerr<<std::setprecision(2) << temp[j] << "\t";cerr << "\n";
 
-        for (int i = 0; i < n; ++i)cerr<<temp[i]<<"\t";cerr<<"\n";
+        // check matrix before
+        for (size_t j = 0; j < n; ++j) {
+            error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width], sizeof(double) * n, cudaMemcpyDeviceToHost);
+        }
+        cerr<<"print M before:\n";
+        print_matrix(inv_h, n, n);
+
 
         gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
+
+        // check matrix
+        for (size_t j = 0; j < n; ++j) {
+            error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width], sizeof(double) * n, cudaMemcpyDeviceToHost);
+        }
+        cerr<<"print M:\n";
+        print_matrix(inv_h, n, n);
+
+        // check identity matrix
+        for (size_t j = 0; j < n; ++j) {
+            error |= cudaMemcpy(inv_h[j], &m2_d[j * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
+        }
+        cerr<<"print I:\n";
+        print_matrix(inv_h, n, n);
+        cerr<<"\n\n\n";
+
+
     }
 
     for (size_t i = 0; i < n; ++i) {

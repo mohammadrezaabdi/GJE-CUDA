@@ -140,7 +140,7 @@ void print_matrix(double **ar, size_t n, size_t m) {
     cerr << "printing matrix:\n";
     for (size_t i = 0; i < n; i++, cerr << endl)
         for (size_t j = 0; j < m; j++)
-            cerr << setprecision(20) << ar[i][j] << "\t";
+            cerr << setprecision(2) << ar[i][j] << "\t";
 }
 
 
