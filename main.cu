@@ -8,13 +8,9 @@
 #define FROM_FILE 2
 
 #define BLOCK_DIM 1<<10
-#define COL_PER_BLK 3
+#define COL_PER_BLK 5
 
 #define min(a, b) ((a<b)?a:b)
-
-#define MARGIN 1e-8
-#define IS_ZERO(x) (abs(x)<=MARGIN)
-#define NOT_ZERO(x) (abs(x)>MARGIN)
 
 
 using namespace std;
@@ -49,7 +45,7 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     }
     __syncthreads();
 
-    size_t max_cols=min((2*n)-ofs,3);
+    size_t max_cols=min((2*n)-ofs,COL_PER_BLK);
 //    size_t max_cols = 3;
 
     if (tid == base_row_index) {
