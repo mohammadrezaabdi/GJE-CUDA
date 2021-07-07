@@ -6,7 +6,7 @@
 #include <iomanip>
 #include <cstring>
 
-#define MARGIN 1e-8
+#define MARGIN 1e-5
 #define IS_ZERO(x) (abs(x)<=MARGIN)
 #define NOT_ZERO(x) (abs(x)>MARGIN)
 

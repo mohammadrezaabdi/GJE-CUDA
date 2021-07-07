@@ -111,7 +111,7 @@ int main(int argc, char **argv) {
     } else {
         get_from_file(n, m2_h, path);
     }
-    print_matrix(m2_h, n, n);
+//    print_matrix(m2_h, n, n);
 
     dim3 block_dim(BLOCK_DIM);
     dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
@@ -131,43 +131,24 @@ int main(int argc, char **argv) {
     gje_set_identity<<<dim3(1), block_dim>>>(m2_d, n);
     cudaDeviceSynchronize();
 
-//    // check identity matrix
-//    for (size_t i = 0; i < n; ++i) {
-//        error |= cudaMemcpy(inv_h[i], &m2_d[i * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
-//    }
-//    print_matrix(inv_h, n, n);
-    double **temp2_h = mxalloc(n, 2 * n, malloc);
+   double **temp2_h = mxalloc(n, 2 * n, malloc);
 
     for (size_t i = 0; i < n; i++) {
 
         gje_scale_calc<<<1, block_dim>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
-        double *temp = (double *) malloc(sizeof(double) * n);
-        error |= cudaMemcpy(temp, scale_d, sizeof(double) * n, cudaMemcpyDeviceToHost);
-        for (int j = 0; j < n; ++j)cerr << std::setprecision(2) << temp[j] << "\t";
-        cerr << "\n";
-
-        // check matrix before
-        for (size_t j = 0; j < n; ++j) {
-            error |= cudaMemcpy(temp2_h[j], &m2_d[j * m2_width], sizeof(double) * 2 * n, cudaMemcpyDeviceToHost);
-        }
-        cerr << "print M before:\n";
-        print_matrix(temp2_h, n, 2 * n);
-
 
         gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
 
-        // check matrix
+    }
+
         for (size_t j = 0; j < n; ++j) {
             error |= cudaMemcpy(temp2_h[j], &m2_d[j * m2_width], sizeof(double) * 2 * n, cudaMemcpyDeviceToHost);
         }
-        cerr << "print M:\n";
-        print_matrix(temp2_h, n, 2 * n);
-        cerr << "\n\n\n";
+        print_matrix(temp2_h, n, n);
 
 
-    }
 
     for (size_t i = 0; i < n; ++i) {
         error |= cudaMemcpy(inv_h[i], &m2_d[i * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
@@ -176,7 +157,8 @@ int main(int argc, char **argv) {
         cout << "couldn't retrieve result";
         cout << cudaGetErrorString((cudaError_t) error);
     }
-    print_matrix(inv_h, n, n);
+
+//    print_matrix(inv_h, n, n);
     cout << inverse_test(m2_h, inv_h, n);
     mxfree(m2_h, n, free);
     mxfree(inv_h, n, free);
