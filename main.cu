@@ -10,8 +10,8 @@
 #define BLOCK_DIM 1024
 #define COL_PER_BLK 5
 
-#define min(a, b) ((a<b)?a:b)
-
+#define min(a, b) ((a < b) ? a : b)
+#define ceil(a, b) (a / b + (a % b != 0))
 
 using namespace std;
 
@@ -32,21 +32,22 @@ normalize_self(double *self, double const *self_but_in_share_memory, double scal
 
 // todo: blockDim < n
 __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double *scale) {
-    size_t m2_width = 2 * n;
+    __shared__ size_t m2_width;
     extern __shared__ double base_row[];
     unsigned int tid = threadIdx.x;
     unsigned int ofs = COL_PER_BLK * blockIdx.x;
 
-    if (tid > n)
+    if (tid >= n)
         return;
 
     if (tid == 0) {
+        m2_width = 2 * n;
         for (size_t i = 0; i < COL_PER_BLK; i++)
             base_row[i] = m2[(base_row_index * m2_width) + (ofs + i)];
     }
     __syncthreads();
 
-    size_t num_cols = min((2 * n) - ofs, COL_PER_BLK);
+    size_t num_cols = min(m2_width - ofs, COL_PER_BLK);
 
     if (tid == base_row_index) {
         normalize_self(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
@@ -60,13 +61,14 @@ __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, 
     __shared__ double diag;
     __shared__ size_t m2d_width;
     double base = 0;
+
+    if (tid >= n)
+        return;
+
     if (tid == 0) {
         m2d_width = 2 * n;
     }
     __syncthreads();
-
-    if (tid > n)
-        return;
 
     if (tid == current_row)
         diag = m2d[current_row * m2d_width + current_row];
@@ -80,25 +82,29 @@ __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, 
         scale[tid] = base / diag;
 }
 
-// todo: blockDim < n
+// ** num of threads per block = COL_PER_BLOCK
 __global__ void gje_set_identity(double *m2d, size_t n) {
     unsigned int tid = threadIdx.x;
+    unsigned int idx = blockDim.x * blockIdx.x + tid;
     __shared__ size_t m2d_width;
+
+    if (idx >= n)
+        return;
+
     if (tid == 0) {
         m2d_width = 2 * n;
     }
     __syncthreads();
 
-    unsigned int idx = COL_PER_BLK * blockIdx.x + tid;
     m2d[idx * m2d_width + (n + idx)] = 1.0;
 }
 
 void cuda_check_err(const string &msg) {
     cudaError_t error = cudaGetLastError();
     if (error != cudaSuccess) {
-        cout << msg << ":" << endl << cudaGetErrorString((cudaError_t) error) << endl;
+        cerr << msg << ":" << endl << cudaGetErrorString((cudaError_t) error) << endl;
         cudaDeviceReset();
-        exit(-1);
+        exit(1);
     }
 }
 
@@ -139,9 +145,6 @@ int main(int argc, char **argv) {
 //    cout << "cpu " << inverse_test(m_h, cpu_inv, n) << endl;
 //    print_matrix(m_h, n, n);
 
-    dim3 block_dim(BLOCK_DIM);
-    dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
-
     size_t m2_width = 2 * n;
     double *m2_d = nullptr, *scale_d = nullptr, *temp2_h = nullptr;;
 
@@ -159,19 +162,23 @@ int main(int argc, char **argv) {
     cudaMalloc((void **) &scale_d, n * sizeof(double));
     cuda_check_err("couldn't allocate memory in device");
 
-    unsigned int grid_dim1 = n / COL_PER_BLK + (n % COL_PER_BLK != 0);
-    gje_set_identity<<<    dim3(grid_dim1), dim3(COL_PER_BLK)>>>(m2_d, n);
+    gje_set_identity<<<    ceil(n, COL_PER_BLK), COL_PER_BLK>>>(m2_d, n);
     cudaDeviceSynchronize();
     cuda_check_err("error in set_identity");
 
     for (size_t i = 0; i < n; i++) {
-        gje_scale_calc<<<1, block_dim>>>(m2_d, n, i, scale_d);
+        stringstream str_i;
+        gje_scale_calc<<<1, BLOCK_DIM>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
-        cuda_check_err("error in scale_calc");
+        str_i.str(string());
+        str_i << "iter " << i << ") error in scale_calc";
+        cuda_check_err(str_i.str());
 
-        gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
+        gje_inverse<<<ceil(m2_width, COL_PER_BLK), BLOCK_DIM, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
-        cuda_check_err("error in inverse");
+        str_i.str(string());
+        str_i << "iter " << i << ") error in inverse";
+        cuda_check_err(str_i.str());
     }
 
     cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * m2_width, cudaMemcpyDeviceToHost);
@@ -189,8 +196,9 @@ int main(int argc, char **argv) {
 
     cudaFree(m2_d);
     cudaFree(scale_d);
+    cudaFreeHost(temp2_h);
     mxfree(m_h, n, free);
     mxfree(inv_h, n, free);
-    cudaFreeHost(temp2_h);
     cudaDeviceReset();
+    return 0;
 }
