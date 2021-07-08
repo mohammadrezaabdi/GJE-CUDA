@@ -97,6 +97,8 @@ void cuda_check_err(const string &msg) {
     cudaError_t error = cudaGetLastError();
     if (error != cudaSuccess) {
         cout << msg << ":" << endl << cudaGetErrorString((cudaError_t) error) << endl;
+        cudaDeviceReset();
+        exit(-1);
     }
 }
 
@@ -132,10 +134,10 @@ int main(int argc, char **argv) {
         get_from_file(n, m_h, path);
     }
 
-    double **cpu_inv = mxalloc(n, n, malloc);
-    inverse(m_h, n, cpu_inv);
-    cout << "cpu " << inverse_test(m_h, cpu_inv, n) << endl;
-    print_matrix(m_h, n, n);
+//    double **cpu_inv = mxalloc(n, n, malloc);
+//    inverse(m_h, n, cpu_inv);
+//    cout << "cpu " << inverse_test(m_h, cpu_inv, n) << endl;
+//    print_matrix(m_h, n, n);
 
     dim3 block_dim(BLOCK_DIM);
     dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
@@ -190,4 +192,5 @@ int main(int argc, char **argv) {
     mxfree(m_h, n, free);
     mxfree(inv_h, n, free);
     cudaFreeHost(temp2_h);
+    cudaDeviceReset();
 }
