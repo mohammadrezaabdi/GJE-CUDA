@@ -10,7 +10,8 @@
 #define IS_ZERO(x) (abs(x)<=MARGIN)
 #define NOT_ZERO(x) (abs(x)>MARGIN)
 
-typedef void* malloc_func_t (size_t);
+typedef void *malloc_func_t(size_t);
+
 typedef void free_func_t(void *);
 
 inline void normalize_row(const double *base_row, double *target_row, size_t n, double scale) {
@@ -141,6 +142,16 @@ void print_matrix(double **ar, size_t n, size_t m) {
     for (size_t i = 0; i < n; i++, cerr << endl)
         for (size_t j = 0; j < m; j++)
             cerr << setprecision(2) << ar[i][j] << "\t";
+}
+
+void print_matrix(double *ar, size_t n, size_t m) {
+    cerr << "printing matrix:\n";
+    for (size_t i = 0; i < n; i++) {
+        size_t c = i * m;
+        for (size_t j = 0; j < m; j++)
+            cerr << setprecision(2) << ar[c + j] << "\t";
+        cerr << endl;
+    }
 }
 
 
