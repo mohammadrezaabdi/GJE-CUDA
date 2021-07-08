@@ -57,7 +57,6 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
 // todo: blockDim < n
 __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, double *scale) {
     unsigned int tid = threadIdx.x;
-    unsigned int ofs = COL_PER_BLK * blockIdx.x;
     __shared__ double diag;
     __shared__ size_t m2d_width;
     double base = 0;
@@ -94,6 +93,13 @@ __global__ void gje_set_identity(double *m2d, size_t n) {
     m2d[idx * m2d_width + (n + idx)] = 1.0;
 }
 
+void cuda_check_err(const string &msg) {
+    cudaError_t error = cudaGetLastError();
+    if (error != cudaSuccess) {
+        cout << msg << ":" << endl << cudaGetErrorString((cudaError_t) error) << endl;
+    }
+}
+
 int main(int argc, char **argv) {
 
     size_t n = 0;
@@ -125,76 +131,60 @@ int main(int argc, char **argv) {
     } else {
         get_from_file(n, m_h, path);
     }
+
     double **cpu_inv = mxalloc(n, n, malloc);
     inverse(m_h, n, cpu_inv);
-//    print_matrix(m_h, n, n);
+    cout << "cpu " << inverse_test(m_h, cpu_inv, n) << endl;
+    print_matrix(m_h, n, n);
 
     dim3 block_dim(BLOCK_DIM);
     dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
 
     size_t m2_width = 2 * n;
     double *m2_d = nullptr, *scale_d = nullptr, *temp2_h = nullptr;;
-    int error = 0;
-    error |= cudaMallocHost((void **) &temp2_h, sizeof(double) * n * m2_width);
-    if (error != cudaSuccess) {
-        cout << "couldn't allocate memory in host" << endl;
-        cout << cudaGetErrorString((cudaError_t) error) << endl;
-    }
-    error |= cudaMalloc((void **) &m2_d, n * m2_width * sizeof(double));
+
+    cudaMallocHost((void **) &temp2_h, sizeof(double) * n * m2_width);
+    cuda_check_err("couldn't allocate memory in host");
+
+    cudaMalloc((void **) &m2_d, n * m2_width * sizeof(double));
+    cuda_check_err("couldn't allocate memory in device");
+
     for (size_t i = 0; i < n; i++) {
-        error |= cudaMemcpy(&m2_d[i * m2_width], m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
+        cudaMemcpy(&m2_d[i * m2_width], m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
+        cuda_check_err("couldn't copy data from host to device");
     }
-    error |= cudaMalloc((void **) &scale_d, n * sizeof(double));
-    if (error != cudaSuccess) {
-        cout << "couldn't allocate memory in device" << endl;
-        cout << cudaGetErrorString((cudaError_t) error) << endl;
-    }
+
+    cudaMalloc((void **) &scale_d, n * sizeof(double));
+    cuda_check_err("couldn't allocate memory in device");
 
     unsigned int grid_dim1 = n / COL_PER_BLK + (n % COL_PER_BLK != 0);
     gje_set_identity<<<    dim3(grid_dim1), dim3(COL_PER_BLK)>>>(m2_d, n);
     cudaDeviceSynchronize();
-
-    error |= cudaGetLastError();
-    if (error != cudaSuccess) {
-        cout << "kernel error" << endl;
-        cout << cudaGetErrorString((cudaError_t) error) << endl;
-    }
+    cuda_check_err("error in set_identity");
 
     for (size_t i = 0; i < n; i++) {
         gje_scale_calc<<<1, block_dim>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
-
-        error |= cudaGetLastError();
-        if (error != cudaSuccess) {
-            cout << "kernel error" << endl;
-            cout << cudaGetErrorString((cudaError_t) error) << endl;
-        }
+        cuda_check_err("error in scale_calc");
 
         gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
-
-        error |= cudaGetLastError();
-        if (error != cudaSuccess) {
-            cout << "kernel error" << endl;
-            cout << cudaGetErrorString((cudaError_t) error) << endl;
-        }
+        cuda_check_err("error in inverse");
     }
 
-    error |= cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * m2_width, cudaMemcpyDeviceToHost);
-    if (error != cudaSuccess) {
-        cout << "couldn't retrieve result" << endl;
-        cout << cudaGetErrorString((cudaError_t) error) << endl;
-    }
+    cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * m2_width, cudaMemcpyDeviceToHost);
+    cuda_check_err("couldn't copy data from device to host");
 //    print_matrix(temp2_h, n, 2 * n);
 
     double **inv_h = mxalloc(n, n, malloc);
     for (size_t i = 0; i < n; ++i) {
         cudaMemcpy(inv_h[i], &temp2_h[i * m2_width + n], sizeof(double) * n, cudaMemcpyHostToHost);
+        cuda_check_err("couldn't copy data from host to host");
     }
 //    print_matrix(inv_h, n, n);
 
-    cout << "cpu " << inverse_test(m_h, cpu_inv, n) << endl;
     cout << "gpu " << inverse_test(m_h, inv_h, n) << endl;
+
     cudaFree(m2_d);
     cudaFree(scale_d);
     mxfree(m_h, n, free);
