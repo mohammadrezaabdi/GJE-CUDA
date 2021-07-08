@@ -120,6 +120,11 @@ int main(int argc, char **argv) {
     size_t m2_width = 2 * n;
     double *m2_d = nullptr, *scale_d = nullptr, *temp2_h = nullptr;;
     int error = 0;
+    error |= cudaMalloc((void **) &temp2_h, sizeof(double) * n * m2_width);
+    if (error != cudaSuccess) {
+        cout << "couldn't allocate memory in host" << endl;
+        cout << cudaGetErrorString((cudaError_t) error) << endl;
+    }
     error |= cudaMalloc((void **) &m2_d, n * m2_width * sizeof(double));
     for (size_t i = 0; i < n; i++) {
         error |= cudaMemcpy(m2_d + i * m2_width, m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
@@ -133,21 +138,27 @@ int main(int argc, char **argv) {
     gje_set_identity<<<dim3(1), block_dim>>>(m2_d, n);
     cudaDeviceSynchronize();
 
+    error |= cudaGetLastError();
+    if (error != cudaSuccess) {
+        cout << "kernel error" << endl;
+        cout << cudaGetErrorString((cudaError_t) error) << endl;
+    }
+
     for (size_t i = 0; i < n; i++) {
         gje_scale_calc<<<1, block_dim>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
 
         gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
+
+        error |= cudaGetLastError();
+        if (error != cudaSuccess) {
+            cout << "kernel error" << endl;
+            cout << cudaGetErrorString((cudaError_t) error) << endl;
+        }
     }
 
-    error |= cudaMallocHost((void **) &temp2_h, sizeof(double));
-    if (error != cudaSuccess) {
-        cout << "couldn't allocate memory in host" << endl;
-        cout << cudaGetErrorString((cudaError_t) error) << endl;
-    }
-    error |= cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * 2 * n,
-                        cudaMemcpyDeviceToHost);
+    error |= cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * m2_width, cudaMemcpyDeviceToHost);
     if (error != cudaSuccess) {
         cout << "couldn't retrieve result" << endl;
         cout << cudaGetErrorString((cudaError_t) error) << endl;
@@ -166,5 +177,5 @@ int main(int argc, char **argv) {
     cudaFree(scale_d);
     mxfree(m_h, n, free);
     mxfree(inv_h, n, free);
-    cudaFreeHost(temp2_h);
+    free(temp2_h);
 }
