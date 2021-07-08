@@ -46,7 +46,7 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     }
     __syncthreads();
 
-    size_t num_cols=min((2 * n) - ofs, COL_PER_BLK);
+    size_t num_cols = min((2 * n) - ofs, COL_PER_BLK);
 
     if (tid == base_row_index) {
         normalize_self(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
@@ -54,7 +54,7 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
         normalize_row(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
 }
 
-__global__ void gje_scale_calc(double *m2, size_t n, size_t current_row, double *scale) {
+__global__ void gje_scale_calc(const double *m2, size_t n, size_t current_row, double *scale) {
     size_t m2_width = 2 * n;
     unsigned int tid = threadIdx.x;
 
@@ -104,62 +104,67 @@ int main(int argc, char **argv) {
             }
         }
     }
-    double **m2_h = mxalloc(n, n, malloc);
-    double **inv_h = mxalloc(n, n, malloc);
+    double **m_h = mxalloc(n, n, malloc);
     if (mode == RANDOM) {
-        fill_random(n, m2_h, pair<float, float>(-1e6, 1e6));
+        fill_random(n, m_h, pair<float, float>(-1e6, 1e6));
     } else {
-        get_from_file(n, m2_h, path);
+        get_from_file(n, m_h, path);
     }
-//    print_matrix(m2_h, n, n);
+    double **cpu_inv = mxalloc(n, n, malloc);
+    inverse(m_h, n, cpu_inv);
+//    print_matrix(m_h, n, n);
 
     dim3 block_dim(BLOCK_DIM);
     dim3 grid_dim((2 * n) / COL_PER_BLK + ((2 * n) % COL_PER_BLK != 0));
 
     size_t m2_width = 2 * n;
-    double *m2_d = nullptr, *scale_d = nullptr;
+    double *m2_d = nullptr, *scale_d = nullptr, *temp2_h = nullptr;;
     int error = 0;
     error |= cudaMalloc((void **) &m2_d, n * m2_width * sizeof(double));
     for (size_t i = 0; i < n; i++) {
-        error |= cudaMemcpy(m2_d + i * m2_width, m2_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
+        error |= cudaMemcpy(m2_d + i * m2_width, m_h[i], n * sizeof(double), cudaMemcpyHostToDevice);
     }
     error |= cudaMalloc((void **) &scale_d, n * sizeof(double));
     if (error != cudaSuccess) {
-        cout << "couldn't allocate memory in device";
-        cout << cudaGetErrorString((cudaError_t) error);
+        cout << "couldn't allocate memory in device" << endl;
+        cout << cudaGetErrorString((cudaError_t) error) << endl;
     }
+
     gje_set_identity<<<dim3(1), block_dim>>>(m2_d, n);
     cudaDeviceSynchronize();
 
-   double **temp2_h = mxalloc(n, 2 * n, malloc);
-
     for (size_t i = 0; i < n; i++) {
-
         gje_scale_calc<<<1, block_dim>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
 
         gje_inverse<<<grid_dim, block_dim, COL_PER_BLK * sizeof(double)>>>(m2_d, n, i, scale_d);
         cudaDeviceSynchronize();
-
     }
 
-    for (size_t j = 0; j < n; ++j) {
-        error |= cudaMemcpy(temp2_h[j], &m2_d[j * m2_width], sizeof(double) * 2 * n, cudaMemcpyDeviceToHost);
-    }
-    print_matrix(temp2_h, n, n);
-
-
-
-    for (size_t i = 0; i < n; ++i) {
-        error |= cudaMemcpy(inv_h[i], &m2_d[i * m2_width + n], sizeof(double) * n, cudaMemcpyDeviceToHost);
-    }
+    error |= cudaMallocHost((void **) &temp2_h, sizeof(double));
     if (error != cudaSuccess) {
-        cout << "couldn't retrieve result";
-        cout << cudaGetErrorString((cudaError_t) error);
+        cout << "couldn't allocate memory in host" << endl;
+        cout << cudaGetErrorString((cudaError_t) error) << endl;
     }
+    error |= cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * 2 * n,
+                        cudaMemcpyDeviceToHost);
+    if (error != cudaSuccess) {
+        cout << "couldn't retrieve result" << endl;
+        cout << cudaGetErrorString((cudaError_t) error) << endl;
+    }
+//    print_matrix(temp2_h, n, 2*n);
 
+    double **inv_h = mxalloc(n, n, malloc);
+    for (size_t i = 0; i < n; ++i) {
+        memcpy(inv_h[i], &temp2_h[i * m2_width + n], sizeof(double) * n);
+    }
 //    print_matrix(inv_h, n, n);
-    cout << inverse_test(m2_h, inv_h, n);
-    mxfree(m2_h, n, free);
+
+    cout << "cpu " << inverse_test(m_h, cpu_inv, n) << endl;
+    cout << "gpu " << inverse_test(m_h, inv_h, n) << endl;
+    cudaFree(m2_d);
+    cudaFree(scale_d);
+    mxfree(m_h, n, free);
     mxfree(inv_h, n, free);
+    cudaFreeHost(temp2_h);
 }
