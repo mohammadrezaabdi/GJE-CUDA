@@ -18,7 +18,8 @@ using namespace std;
 __device__ void normalize_row(double *target_row, const double *base_row, double scale, size_t n, size_t offset) {
     for (size_t i = 0; i < n; i++) {
         double temp = target_row[i + offset] - (base_row[i] * scale);
-        target_row[i + offset] = (IS_ZERO(temp) ? 0 : temp);
+//        target_row[i + offset] = (IS_ZERO(temp) ? 0 : temp);
+        target_row[i + offset] = temp;
     }
 }
 
@@ -46,7 +47,6 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     __syncthreads();
 
     size_t max_cols=min((2*n)-ofs,COL_PER_BLK);
-//    size_t max_cols = 3;
 
     if (tid == base_row_index) {
         normalize_self(&m2[tid * m2_width], base_row, scale[tid], max_cols, ofs);
