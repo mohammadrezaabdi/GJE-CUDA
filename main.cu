@@ -46,12 +46,12 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     }
     __syncthreads();
 
-    size_t max_cols=min((2*n)-ofs,COL_PER_BLK);
+    size_t num_cols=min((2 * n) - ofs, COL_PER_BLK);
 
     if (tid == base_row_index) {
-        normalize_self(&m2[tid * m2_width], base_row, scale[tid], max_cols, ofs);
+        normalize_self(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
     } else
-        normalize_row(&m2[tid * m2_width], base_row, scale[tid], max_cols, ofs);
+        normalize_row(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
 }
 
 __global__ void gje_scale_calc(double *m2d, size_t n, size_t current_row, double *scale) {
@@ -143,10 +143,10 @@ int main(int argc, char **argv) {
 
     }
 
-        for (size_t j = 0; j < n; ++j) {
-            error |= cudaMemcpy(temp2_h[j], &m2_d[j * m2_width], sizeof(double) * 2 * n, cudaMemcpyDeviceToHost);
-        }
-        print_matrix(temp2_h, n, n);
+    for (size_t j = 0; j < n; ++j) {
+        error |= cudaMemcpy(temp2_h[j], &m2_d[j * m2_width], sizeof(double) * 2 * n, cudaMemcpyDeviceToHost);
+    }
+    print_matrix(temp2_h, n, n);
 
 
 
