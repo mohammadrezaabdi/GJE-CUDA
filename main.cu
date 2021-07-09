@@ -59,16 +59,11 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
 __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, double *scale) {
     unsigned int tid = threadIdx.x;
     __shared__ double diag;
-    __shared__ size_t m2d_width;
+    size_t m2d_width = 2 * n;
     double base = 0;
 
     if (tid >= n)
         return;
-
-    if (tid == 0) {
-        m2d_width = 2 * n;
-    }
-    __syncthreads();
 
     if (tid == current_row)
         diag = m2d[current_row * m2d_width + current_row];
@@ -86,15 +81,10 @@ __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, 
 __global__ void gje_set_identity(double *m2d, size_t n) {
     unsigned int tid = threadIdx.x;
     unsigned int idx = blockDim.x * blockIdx.x + tid;
-    __shared__ size_t m2d_width;
+    size_t m2d_width = n * 2;
 
     if (idx >= n)
         return;
-
-    if (tid == 0) {
-        m2d_width = 2 * n;
-    }
-    __syncthreads();
 
     m2d[idx * m2d_width + (n + idx)] = 1.0;
 }
