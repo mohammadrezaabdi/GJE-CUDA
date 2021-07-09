@@ -7,7 +7,7 @@
 #define RANDOM 1
 #define FROM_FILE 2
 
-#define BLOCK_DIM 1024
+#define BLOCK_DIM (1<<10)
 #define COL_PER_BLK 5
 
 #define min(a, b) ((a < b) ? a : b)
@@ -30,9 +30,9 @@ normalize_self(double *self, double const *self_but_in_share_memory, double scal
     }
 }
 
-// todo: blockDim < n
+
 __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double *scale) {
-    __shared__ size_t m2_width;
+    size_t m2_width = 2 * n;
     extern __shared__ double base_row[];
     unsigned int tid = threadIdx.x;
     unsigned int ofs = COL_PER_BLK * blockIdx.x;
@@ -40,22 +40,25 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     if (tid >= n)
         return;
 
-    if (tid == 0) {
-        m2_width = 2 * n;
+    if (tid == 0)
         for (size_t i = 0; i < COL_PER_BLK; i++)
             base_row[i] = m2[(base_row_index * m2_width) + (ofs + i)];
-    }
     __syncthreads();
 
     size_t num_cols = min(m2_width - ofs, COL_PER_BLK);
+    size_t step=blockDim.x;
+    while(tid<n){
 
-    if (tid == base_row_index) {
-        normalize_self(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
-    } else
-        normalize_row(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
+        if (tid == base_row_index)
+            normalize_self(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
+        else
+            normalize_row(&m2[tid * m2_width], base_row, scale[tid], num_cols, ofs);
+
+        tid+=step;
+    }
 }
 
-// todo: blockDim < n
+
 __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, double *scale) {
     unsigned int tid = threadIdx.x;
     __shared__ double diag;
@@ -65,16 +68,23 @@ __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, 
     if (tid >= n)
         return;
 
-    if (tid == current_row)
+    if (tid == 0)
         diag = m2d[current_row * m2d_width + current_row];
-    else
-        base = m2d[tid * m2d_width + current_row];
     __syncthreads();
 
-    if (tid == current_row)
-        scale[tid] = diag;
-    else
-        scale[tid] = base / diag;
+    size_t step = blockDim.x;
+    while (tid < n) {
+
+        if (tid == current_row)
+            scale[tid] = diag;
+        else {
+            base = m2d[tid * m2d_width + current_row];
+            scale[tid] = base / diag;
+        }
+        tid += step;
+    }
+
+
 }
 
 // ** num of threads per block = COL_PER_BLOCK
@@ -99,7 +109,6 @@ void cuda_check_err(const string &msg) {
 }
 
 int main(int argc, char **argv) {
-
     size_t n = 0;
     int mode = FROM_FILE;
     string path;
@@ -193,8 +202,8 @@ int main(int argc, char **argv) {
 
     float milliseconds = 0;
     cudaEventElapsedTime(&milliseconds, start, stop);
-    cout << "gpu: "<<endl;
-    cout << "\ttime: " << milliseconds/1000 << endl;
+    cout << "gpu: " << endl;
+    cout << "\ttime: " << milliseconds / 1000 << endl;
     cout << "\terror:" << inverse_test(m_h, inv_h, n) << endl;
 
     cudaFree(m2_d);
