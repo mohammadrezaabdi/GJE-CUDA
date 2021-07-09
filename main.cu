@@ -193,7 +193,9 @@ int main(int argc, char **argv) {
     }
 //    print_matrix(inv_h, n, n);
 
-    cout << "gpu " << inverse_test(m_h, inv_h, n) << " mils: " << milliseconds << endl;
+    cout << "gpu :";
+    cout << "\ttime: " << milliseconds/1000 << endl;
+    cout << "\terror:" << inverse_test(m_h, inv_h, n) << endl;
 
     cudaFree(m2_d);
     cudaFree(scale_d);
