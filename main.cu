@@ -152,6 +152,12 @@ int main(int argc, char **argv) {
     cudaMalloc((void **) &scale_d, n * sizeof(double));
     cuda_check_err("couldn't allocate memory in device");
 
+    cudaEvent_t start, stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+
+    cudaEventRecord(start);
+
     gje_set_identity<<<    ceil(n, COL_PER_BLK), COL_PER_BLK>>>(m2_d, n);
     cudaDeviceSynchronize();
     cuda_check_err("error in set_identity");
@@ -171,6 +177,11 @@ int main(int argc, char **argv) {
         cuda_check_err(str_i.str());
     }
 
+    cudaEventRecord(stop);
+    cudaEventSynchronize(stop);
+    float milliseconds = 0;
+    cudaEventElapsedTime(&milliseconds, start, stop);
+
     cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * m2_width, cudaMemcpyDeviceToHost);
     cuda_check_err("couldn't copy data from device to host");
 //    print_matrix(temp2_h, n, 2 * n);
@@ -182,7 +193,7 @@ int main(int argc, char **argv) {
     }
 //    print_matrix(inv_h, n, n);
 
-    cout << "gpu " << inverse_test(m_h, inv_h, n) << endl;
+    cout << "gpu " << inverse_test(m_h, inv_h, n) << " mils: " << milliseconds << endl;
 
     cudaFree(m2_d);
     cudaFree(scale_d);
