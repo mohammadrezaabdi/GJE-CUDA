@@ -158,7 +158,7 @@ int main(int argc, char **argv) {
 
     cudaEventRecord(start);
 
-    gje_set_identity<<<    ceil(n, COL_PER_BLK), COL_PER_BLK>>>(m2_d, n);
+    gje_set_identity<<<ceil(n, COL_PER_BLK), COL_PER_BLK>>>(m2_d, n);
     cudaDeviceSynchronize();
     cuda_check_err("error in set_identity");
 
@@ -179,8 +179,6 @@ int main(int argc, char **argv) {
 
     cudaEventRecord(stop);
     cudaEventSynchronize(stop);
-    float milliseconds = 0;
-    cudaEventElapsedTime(&milliseconds, start, stop);
 
     cudaMemcpy(temp2_h, m2_d, sizeof(double) * n * m2_width, cudaMemcpyDeviceToHost);
     cuda_check_err("couldn't copy data from device to host");
@@ -193,6 +191,8 @@ int main(int argc, char **argv) {
     }
 //    print_matrix(inv_h, n, n);
 
+    float milliseconds = 0;
+    cudaEventElapsedTime(&milliseconds, start, stop);
     cout << "gpu :";
     cout << "\ttime: " << milliseconds/1000 << endl;
     cout << "\terror:" << inverse_test(m_h, inv_h, n) << endl;
