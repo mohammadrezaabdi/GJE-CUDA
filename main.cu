@@ -193,7 +193,7 @@ int main(int argc, char **argv) {
 
     float milliseconds = 0;
     cudaEventElapsedTime(&milliseconds, start, stop);
-    cout << "gpu :";
+    cout << "gpu: "<<endl;
     cout << "\ttime: " << milliseconds/1000 << endl;
     cout << "\terror:" << inverse_test(m_h, inv_h, n) << endl;
 
