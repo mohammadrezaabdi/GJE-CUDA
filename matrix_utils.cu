@@ -20,7 +20,6 @@ normalize_self(double *self, double const *self_but_in_share_memory, double scal
     }
 }
 
-
 __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double *scale) {
     size_t m2_width = 2 * n;
     extern __shared__ double base_row[];
@@ -48,7 +47,6 @@ __global__ void gje_inverse(double *m2, size_t n, size_t base_row_index, double 
     }
 }
 
-
 __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, double *scale) {
     unsigned int tid = threadIdx.x;
     __shared__ double diag;
@@ -75,15 +73,6 @@ __global__ void gje_scale_calc(const double *m2d, size_t n, size_t current_row, 
     }
 
 
-}
-
-__host__ void cuda_check_err(const string &msg) {
-    cudaError_t error = cudaGetLastError();
-    if (error != cudaSuccess) {
-        cerr << msg << ":" << endl << cudaGetErrorString((cudaError_t) error) << endl;
-        cudaDeviceReset();
-        exit(1);
-    }
 }
 
 // ** num of threads per block = COL_PER_BLOCK
@@ -148,4 +137,13 @@ __host__ void gpu_inverse(double **matrix, size_t n, double **inverse, float *ru
 
     cudaFree(m2_d);
     cudaFree(scale_d);
+}
+
+__host__ void cuda_check_err(const string &msg) {
+    cudaError_t error = cudaGetLastError();
+    if (error != cudaSuccess) {
+        cerr << msg << ":" << endl << cudaGetErrorString((cudaError_t) error) << endl;
+        cudaDeviceReset();
+        exit(1);
+    }
 }
