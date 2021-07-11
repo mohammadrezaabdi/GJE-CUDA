@@ -1,6 +1,11 @@
 #ifndef GJE_MATRIX_UTILS_H
 #define GJE_MATRIX_UTILS_H
 
+#include <string>
+#define MARGIN 1e-5
+#define IS_ZERO(x) (abs(x)<=MARGIN)
+#define NOT_ZERO(x) (abs(x)>MARGIN)
+
 using namespace std;
 typedef void* malloc_func_t (size_t);
 typedef void free_func_t(void *);

@@ -7,9 +7,6 @@
 #include <cstring>
 #include <chrono>
 
-#define MARGIN 1e-5
-#define IS_ZERO(x) (abs(x)<=MARGIN)
-#define NOT_ZERO(x) (abs(x)>MARGIN)
 
 typedef void *malloc_func_t(size_t);
 

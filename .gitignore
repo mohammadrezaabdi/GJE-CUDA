@@ -3,6 +3,7 @@
 !*.cpp
 !*.h
 !*.cu
+!*.cuh
 !.gitignore
 !CMakeLists.txt
 !Makefile
