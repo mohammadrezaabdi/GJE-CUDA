@@ -60,7 +60,7 @@ int main(int argc, char **argv) {
     if (!out_path.empty())
         save_to_file(n, inverse, out_path);
 
-    cout << "calculation time: " << runtime << "(ms)" << endl;
+    cout << "calculation time: " << runtime << "(ms)";
 
     mxfree(matrix, n, free);
     mxfree(inverse, n, free);

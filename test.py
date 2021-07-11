@@ -6,7 +6,7 @@ from numpy import linalg as lng
 from subprocess import Popen, PIPE
 import os
 
-num_of_tests = 15
+num_of_tests = 10
 sample_range = 1e6
 
 
@@ -21,35 +21,28 @@ def main():
     samples = [2 ** i for i in range(1, num_of_tests + 1)]
     for i, n in enumerate(samples, start=1):
         input_path = f'tests/in{i}.txt'
-        output_cpu_path = f'tests/out{i}_cpu.txt'
-        output_gpu_path = f'tests/out{i}_gpu.txt'
         arr = np.random.uniform(low=-sample_range, high=sample_range, size=(n, n))
         np.savetxt(input_path, arr, delimiter=' ')
 
-        print(f'cpu test{i}\tstarted (n={n}).')
-        p1 = Popen(['./GJE', '-c', '-n', str(n), '-f', str(input_path), '-o', str(output_cpu_path)],
-                   stdout=PIPE, stderr=PIPE)
-        stdout, stderr = p1.communicate()
-        stdout_str, stderr_str = (stdout.decode("utf-8"), stderr.decode("utf-8"))
-        print(stdout_str)
-        print(stderr_str, file=sys.stderr)
-        cpu_runtimes.append(float(re.findall(r"[+-]? *(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?", stdout_str)[0]))
-        print(f'cpu test{i}\tfinished.')
-
-        print(f'gpu test{i}\tstarted (n={n}).')
-        p2 = Popen(['./GJE', '-g', '-n', str(n), '-f', str(input_path), '-o', str(output_gpu_path)],
-                   stdout=PIPE, stderr=PIPE)
-        stdout, stderr = p2.communicate()
-        stdout_str, stderr_str = (stdout.decode("utf-8"), stderr.decode("utf-8"))
-        print(stdout_str)
-        print(stderr_str, file=sys.stderr)
-        cpu_runtimes.append(float(re.findall(r"[+-]? *(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?", stdout_str)[0]))
-        print(f'gpu test{i}\tfinished.')
-
-        cpu_inv = np.array([[float(i) for i in line.split()] for line in open(output_cpu_path)])
-        gpu_inv = np.array([[float(i) for i in line.split()] for line in open(output_gpu_path)])
-        cpu_norms.append(lng.norm(np.matmul(arr, cpu_inv) - np.identity(n)))
-        gpu_norms.append(lng.norm(np.matmul(arr, gpu_inv) - np.identity(n)))
+        for dev in ['cpu', 'gpu']:
+            output_path = f'tests/out{i}_{dev}.txt'
+            print(f'{dev} test{i}\tstarted (n={n}).')
+            p1 = Popen(['./GJE', '-c', '-n', str(n), '-f', str(input_path), '-o', str(output_path)],
+                       stdout=PIPE, stderr=PIPE)
+            stdout, stderr = p1.communicate()
+            stdout_str, stderr_str = (stdout.decode("utf-8"), stderr.decode("utf-8"))
+            print(stdout_str)
+            print(stderr_str, file=sys.stderr)
+            runtime = float(re.findall(r"[+-]? *(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?", stdout_str)[0])
+            print(f'{dev} test{i}\tfinished.')
+            inv = np.array([[float(i) for i in line.split()] for line in open(output_path)])
+            norm = lng.norm(np.matmul(arr, inv) - np.identity(n))
+            if dev == 'cpu':
+                cpu_runtimes.append(runtime)
+                cpu_norms.append(norm)
+            else:
+                gpu_runtimes.append(runtime)
+                gpu_norms.append(norm)
 
     plt.figure(figsize=(10, 7.5))
     plt.plot(cpu_runtimes)
