@@ -1,8 +1,10 @@
 import numpy as np
 import re
+import sys
+import matplotlib.pyplot as plt
 from numpy import linalg as lng
 from subprocess import Popen, PIPE
-import matplotlib.pyplot as plt
+import os
 
 num_of_tests = 15
 sample_range = 1e6
@@ -10,6 +12,8 @@ sample_range = 1e6
 
 def main():
     Popen('make').wait()
+    if not os.path.exists('/tests'):
+        os.makedirs('/tests')
     gpu_norms = []
     gpu_runtimes = []
     cpu_norms = []
@@ -27,8 +31,9 @@ def main():
                    stdout=PIPE, stderr=PIPE)
         stdout, stderr = p1.communicate()
         stdout_str, stderr_str = (stdout.decode("utf-8"), stderr.decode("utf-8"))
-        print(stdout_str, stderr_str)
-        cpu_runtimes.append(float(re.findall('\\d*\\.\\d+', stdout_str)[0]))
+        print(stdout_str)
+        print(stderr_str, file=sys.stderr)
+        cpu_runtimes.append(float(re.findall(r"[+-]? *(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?", stdout_str)[0]))
         print(f'cpu test{i}\tfinished.')
 
         print(f'gpu test{i}\tstarted (n={n}).')
@@ -36,8 +41,9 @@ def main():
                    stdout=PIPE, stderr=PIPE)
         stdout, stderr = p2.communicate()
         stdout_str, stderr_str = (stdout.decode("utf-8"), stderr.decode("utf-8"))
-        print(stdout_str, stderr_str)
-        cpu_runtimes.append(float(re.findall('\\d*\\.\\d+', stdout_str)[0]))
+        print(stdout_str)
+        print(stderr_str, file=sys.stderr)
+        cpu_runtimes.append(float(re.findall(r"[+-]? *(?:\d+(?:\.\d*)?|\.\d+)(?:[eE][+-]?\d+)?", stdout_str)[0]))
         print(f'gpu test{i}\tfinished.')
 
         cpu_inv = np.array([[float(i) for i in line.split()] for line in open(output_cpu_path)])
