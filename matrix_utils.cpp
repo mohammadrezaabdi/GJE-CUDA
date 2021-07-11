@@ -5,6 +5,7 @@
 #include <random>
 #include <iomanip>
 #include <cstring>
+#include <chrono>
 
 #define MARGIN 1e-5
 #define IS_ZERO(x) (abs(x)<=MARGIN)
@@ -20,10 +21,13 @@ inline void normalize_row(const double *base_row, double *target_row, size_t n, 
     }
 }
 
-void inverse(double **matrix, size_t n, double **inverse) {
+void cpu_inverse(double **matrix, size_t n, double **inverse, float *runtime) {
     // Create the augmented matrix
     double **m = mxalloc(n, 2 * n, malloc);
     mxcpy(matrix, m, n, n, 0);
+
+    // start the timer
+    auto begin = chrono::high_resolution_clock::now();
 
     // Add the identity matrix
     for (int i = 0; i < n; i++) {
@@ -31,7 +35,7 @@ void inverse(double **matrix, size_t n, double **inverse) {
         m[i][n + i] = 1;
     }
 
-    // generating the inverse matrix
+    // generating the cpu_inverse matrix
     for (size_t i = 0; i < n; i++) {
         if (IS_ZERO(m[i][i]))//m[i][i] ==0
             for (size_t k = i + 1; k < n; k++)
@@ -48,7 +52,12 @@ void inverse(double **matrix, size_t n, double **inverse) {
             m[i][j] /= scale;
     }
 
-    // copy the inverse matrix (augmented) to the result array
+    // stop timer and calculate runtime in milliseconds
+    auto end =  chrono::high_resolution_clock::now();
+    auto elapsed =  chrono::duration_cast<chrono::nanoseconds>(end - begin);
+    *runtime = elapsed.count() * 1e-6;
+
+    // copy the cpu_inverse matrix (augmented) to the result array
     mxcpy(m, inverse, n, n, n);
     mxfree(m, n, free);
 }
@@ -108,6 +117,19 @@ void get_from_file(size_t n, double **matrix, const string &path) {
     }
     done:
     fin.close();
+}
+
+void save_to_file(size_t n, double **matrix, const string &path) {
+    ofstream fout(path);
+    for (size_t i = 0; i < n; i++) {
+        for (size_t j = 0; j < n; j++) {
+            fout << matrix[i][j] << " ";
+            if (!fout)goto done;
+        }
+        fout << endl;
+    }
+    done:
+    fout.close();
 }
 
 void fill_random(size_t n, double **matrix, pair<float, float> range) {
