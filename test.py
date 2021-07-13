@@ -6,7 +6,7 @@ from numpy import linalg as lng
 from subprocess import Popen, PIPE
 import os
 
-num_of_tests = 200
+num_of_tests = 400
 sample_range = 1e6
 
 
@@ -18,7 +18,7 @@ def main():
     gpu_runtimes = []
     cpu_norms = []
     cpu_runtimes = []
-    samples = [2048 + 10 * i for i in range(1, num_of_tests + 1)]
+    samples = [10 * i for i in range(1, num_of_tests + 1)]
     for i, n in enumerate(samples, start=1):
         input_path = f'tests/in.txt'
         arr = np.random.uniform(low=-sample_range, high=sample_range, size=(n, n))
