@@ -6,7 +6,7 @@ from numpy import linalg as lng
 from subprocess import Popen, PIPE
 import os
 
-num_of_tests = 15
+num_of_tests = 200
 sample_range = 1e6
 
 
@@ -18,18 +18,18 @@ def main():
     gpu_runtimes = []
     cpu_norms = []
     cpu_runtimes = []
-    samples = [2048 + i * 100 for i in range(1, num_of_tests + 1)]
+    samples = [2048 + 10 * i for i in range(1, num_of_tests + 1)]
     for i, n in enumerate(samples, start=1):
-        input_path = f'tests/in{i}.txt'
+        input_path = f'tests/in.txt'
         arr = np.random.uniform(low=-sample_range, high=sample_range, size=(n, n))
         np.savetxt(input_path, arr, delimiter=' ')
 
         for dev in ['cpu', 'gpu']:
-            output_path = f'tests/out{i}_{dev}.txt'
+            output_path = f'tests/out{dev}.txt'
             print(f'{dev} test{i}\tstarted (n={n}).')
             f = '-c'
             if dev == 'gpu':
-            	f = '-g'
+                f = '-g'
             p1 = Popen(['./GJE', f, '-n', str(n), '-f', str(input_path), '-o', str(output_path)],
                        stdout=PIPE, stderr=PIPE)
             stdout, stderr = p1.communicate()
@@ -55,7 +55,7 @@ def main():
     plt.xlabel('n')
     plt.ylabel('ms')
     plt.show()
-    
+
     plt.figure(figsize=(10, 7.5))
     plt.plot(samples, cpu_norms)
     plt.plot(samples, gpu_norms)
@@ -64,6 +64,7 @@ def main():
     plt.xlabel('n')
     plt.ylabel('norm2')
     plt.show()
+
 
 if __name__ == '__main__':
     main()
