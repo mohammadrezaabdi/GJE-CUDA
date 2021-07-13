@@ -96,7 +96,7 @@ you can run the python benchmark program by following command:
 sudo python test.py 
 ```
 
-on this benchmark, we've executed the program with random matrix with exponential binary lengths from 2^1 till 2^16.
+on this benchmark, we've executed the program with random matrix.
 
 after each execution on both cpu & gpu, we capture its computation runtime and error.
 

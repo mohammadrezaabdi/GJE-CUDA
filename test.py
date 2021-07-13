@@ -6,7 +6,7 @@ from numpy import linalg as lng
 from subprocess import Popen, PIPE
 import os
 
-num_of_tests = 100
+num_of_tests = 15
 sample_range = 1e6
 
 
@@ -18,7 +18,7 @@ def main():
     gpu_runtimes = []
     cpu_norms = []
     cpu_runtimes = []
-    samples = [1024 + i * 100 for i in range(1, num_of_tests + 1)]
+    samples = [2048 + i * 100 for i in range(1, num_of_tests + 1)]
     for i, n in enumerate(samples, start=1):
         input_path = f'tests/in{i}.txt'
         arr = np.random.uniform(low=-sample_range, high=sample_range, size=(n, n))
@@ -27,7 +27,10 @@ def main():
         for dev in ['cpu', 'gpu']:
             output_path = f'tests/out{i}_{dev}.txt'
             print(f'{dev} test{i}\tstarted (n={n}).')
-            p1 = Popen(['./GJE', '-c', '-n', str(n), '-f', str(input_path), '-o', str(output_path)],
+            f = '-c'
+            if dev == 'gpu':
+            	f = '-g'
+            p1 = Popen(['./GJE', f, '-n', str(n), '-f', str(input_path), '-o', str(output_path)],
                        stdout=PIPE, stderr=PIPE)
             stdout, stderr = p1.communicate()
             stdout_str, stderr_str = (stdout.decode("utf-8"), stderr.decode("utf-8"))
