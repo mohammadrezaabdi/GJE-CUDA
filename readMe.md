@@ -43,7 +43,9 @@ sudo python test.py
 ```
 
 on this benchmark, we've executed the program with random matrix with exponential binary lengths from 2^1 till 2^16.
+
 after each execution on both cpu & gpu, we capture its computation runtime and error.
+
 we calculate matrix error by norm2(Frobenius) method. assume that we've calculated the inverse of matrix A, then we have:
 
 $error = norm2(I-A*A^{-1})$

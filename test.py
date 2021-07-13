@@ -6,14 +6,14 @@ from numpy import linalg as lng
 from subprocess import Popen, PIPE
 import os
 
-num_of_tests = 15
+num_of_tests = 10
 sample_range = 1e6
 
 
 def main():
     Popen('make').wait()
-    if not os.path.exists('/tests'):
-        os.makedirs('/tests')
+    if not os.path.exists('tests'):
+        os.makedirs('tests')
     gpu_norms = []
     gpu_runtimes = []
     cpu_norms = []
