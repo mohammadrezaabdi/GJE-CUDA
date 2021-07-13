@@ -6,7 +6,7 @@ from numpy import linalg as lng
 from subprocess import Popen, PIPE
 import os
 
-num_of_tests = 15
+num_of_tests = 100
 sample_range = 1e6
 
 
@@ -18,7 +18,7 @@ def main():
     gpu_runtimes = []
     cpu_norms = []
     cpu_runtimes = []
-    samples = [2 ** i for i in range(1, num_of_tests + 1)]
+    samples = [1024 + i * 100 for i in range(1, num_of_tests + 1)]
     for i, n in enumerate(samples, start=1):
         input_path = f'tests/in{i}.txt'
         arr = np.random.uniform(low=-sample_range, high=sample_range, size=(n, n))
@@ -44,25 +44,23 @@ def main():
                 gpu_runtimes.append(runtime)
                 gpu_norms.append(norm)
 
-    print(cpu_runtimes, gpu_runtimes, cpu_norms, gpu_norms)
-    #
-    # plt.figure(figsize=(10, 7.5))
-    # plt.plot(cpu_runtimes)
-    # plt.plot(gpu_runtimes)
-    # plt.legend(['cpu', 'gpu'], loc='upper left')
-    # plt.title('runtime plot')
-    # plt.xlabel('n')
-    # plt.ylabel('ms')
-    # plt.show()
-    #
-    # plt.figure(figsize=(10, 7.5))
-    # plt.plot(cpu_norms)
-    # plt.plot(gpu_norms)
-    # plt.legend(['cpu', 'gpu'], loc='upper left')
-    # plt.title('precision plot')
-    # plt.xlabel('n')
-    # plt.ylabel('norm2')
-    # plt.show()
+    plt.figure(figsize=(10, 7.5))
+    plt.plot(samples, cpu_runtimes)
+    plt.plot(samples, gpu_runtimes)
+    plt.legend(['cpu', 'gpu'], loc='upper left')
+    plt.title('runtime plot')
+    plt.xlabel('n')
+    plt.ylabel('ms')
+    plt.show()
+    
+    plt.figure(figsize=(10, 7.5))
+    plt.plot(samples, cpu_norms)
+    plt.plot(samples, gpu_norms)
+    plt.legend(['cpu', 'gpu'], loc='upper left')
+    plt.title('precision plot')
+    plt.xlabel('n')
+    plt.ylabel('norm2')
+    plt.show()
 
 if __name__ == '__main__':
     main()
