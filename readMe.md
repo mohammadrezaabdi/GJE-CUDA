@@ -32,9 +32,9 @@ calculation time: 120.31(ms)
 ```
 
 ## methodology
-** important --> 1024 >= block size > COL_PER_BLK
 
 We use simple gauss-gordan algorithm and try to port it to GPU through cuda language
+
 the algorithm goes as follow:
 
 1. one kernel creating the identity matrix near to the input matrix
@@ -49,6 +49,7 @@ the algorithm goes as follow:
 ## time analysis
 
 given the methodology above our time complexity would be max (kernel1 ,n*(kernel2+kernel3))
+
 since first kernel time order in CPU is of O(n) and since we break the execution into n/COL_PER_BLK parallel blocks, our total execution time for the first kernel would be : O(n/(COL_PER_BLK*NUM_SM))
 
 kernel2 has similar charactristic and its execution time would be: O(n/blockDim.x)
