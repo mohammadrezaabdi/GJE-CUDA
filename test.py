@@ -6,7 +6,7 @@ from numpy import linalg as lng
 from subprocess import Popen, PIPE
 import os
 
-num_of_tests = 10
+num_of_tests = 15
 sample_range = 1e6
 
 

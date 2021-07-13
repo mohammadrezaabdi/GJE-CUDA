@@ -5,6 +5,7 @@
 !*.cu
 !*.cuh
 !*.py
+!*.md
 !.gitignore
 !CMakeLists.txt
 !Makefile
