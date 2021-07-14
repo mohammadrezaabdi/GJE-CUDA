@@ -109,4 +109,4 @@ we've executed the benchmark on Nvidia RTX2080 & intel i9900k.
 
 ![RUN_TIME](runtime_1.png)
 
-![PRECISION](precision.png)
+![PRECISION](precision_1.png)
