@@ -107,6 +107,6 @@ $error = norm2(I-A*A^{-1})$
 
 we've executed the benchmark on Nvidia RTX2080 & intel i9900k.
 
-![RUN_TIME](runtime_1.jpg)
+![RUN_TIME](runtime_1.png)
 
-![PRECISION](precision.jpg)
+![PRECISION](precision.png)
