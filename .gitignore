@@ -6,7 +6,9 @@
 !*.cuh
 !*.py
 !*.md
+!*.txt
 !*.jpg
+!*.png
 !.gitignore
 !CMakeLists.txt
 !Makefile

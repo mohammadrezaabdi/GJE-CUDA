@@ -1,0 +1,2401 @@
+[100%] Built target GJE
+cpu test1	started (n=10).
+calculation time: 0.004274(ms)
+cpu test1	finished.
+gpu test1	started (n=10).
+calculation time: 0.16736(ms)
+gpu test1	finished.
+cpu test2	started (n=20).
+calculation time: 0.093959(ms)
+cpu test2	finished.
+gpu test2	started (n=20).
+calculation time: 0.299808(ms)
+gpu test2	finished.
+cpu test3	started (n=30).
+calculation time: 0.107708(ms)
+cpu test3	finished.
+gpu test3	started (n=30).
+calculation time: 0.441344(ms)
+gpu test3	finished.
+cpu test4	started (n=40).
+calculation time: 0.252446(ms)
+cpu test4	finished.
+gpu test4	started (n=40).
+calculation time: 0.577408(ms)
+gpu test4	finished.
+cpu test5	started (n=50).
+calculation time: 0.461697(ms)
+cpu test5	finished.
+gpu test5	started (n=50).
+calculation time: 0.712832(ms)
+gpu test5	finished.
+cpu test6	started (n=60).
+calculation time: 0.892404(ms)
+cpu test6	finished.
+gpu test6	started (n=60).
+calculation time: 0.854016(ms)
+gpu test6	finished.
+cpu test7	started (n=70).
+calculation time: 1.41802(ms)
+cpu test7	finished.
+gpu test7	started (n=70).
+calculation time: 0.993216(ms)
+gpu test7	finished.
+cpu test8	started (n=80).
+calculation time: 1.71051(ms)
+cpu test8	finished.
+gpu test8	started (n=80).
+calculation time: 1.16422(ms)
+gpu test8	finished.
+cpu test9	started (n=90).
+calculation time: 2.9692(ms)
+cpu test9	finished.
+gpu test9	started (n=90).
+calculation time: 1.3007(ms)
+gpu test9	finished.
+cpu test10	started (n=100).
+calculation time: 3.39296(ms)
+cpu test10	finished.
+gpu test10	started (n=100).
+calculation time: 1.43853(ms)
+gpu test10	finished.
+cpu test11	started (n=110).
+calculation time: 4.59746(ms)
+cpu test11	finished.
+gpu test11	started (n=110).
+calculation time: 1.62611(ms)
+gpu test11	finished.
+cpu test12	started (n=120).
+calculation time: 5.77054(ms)
+cpu test12	finished.
+gpu test12	started (n=120).
+calculation time: 2.06464(ms)
+gpu test12	finished.
+cpu test13	started (n=130).
+calculation time: 9.20538(ms)
+cpu test13	finished.
+gpu test13	started (n=130).
+calculation time: 2.2528(ms)
+gpu test13	finished.
+cpu test14	started (n=140).
+calculation time: 9.24274(ms)
+cpu test14	finished.
+gpu test14	started (n=140).
+calculation time: 2.46794(ms)
+gpu test14	finished.
+cpu test15	started (n=150).
+calculation time: 11.2795(ms)
+cpu test15	finished.
+gpu test15	started (n=150).
+calculation time: 2.6823(ms)
+gpu test15	finished.
+cpu test16	started (n=160).
+calculation time: 13.7054(ms)
+cpu test16	finished.
+gpu test16	started (n=160).
+calculation time: 2.98906(ms)
+gpu test16	finished.
+cpu test17	started (n=170).
+calculation time: 16.4095(ms)
+cpu test17	finished.
+gpu test17	started (n=170).
+calculation time: 3.12262(ms)
+gpu test17	finished.
+cpu test18	started (n=180).
+calculation time: 19.5173(ms)
+cpu test18	finished.
+gpu test18	started (n=180).
+calculation time: 3.3944(ms)
+gpu test18	finished.
+cpu test19	started (n=190).
+calculation time: 23.0873(ms)
+cpu test19	finished.
+gpu test19	started (n=190).
+calculation time: 3.63629(ms)
+gpu test19	finished.
+cpu test20	started (n=200).
+calculation time: 26.8189(ms)
+cpu test20	finished.
+gpu test20	started (n=200).
+calculation time: 4.01571(ms)
+gpu test20	finished.
+cpu test21	started (n=210).
+calculation time: 31.3493(ms)
+cpu test21	finished.
+gpu test21	started (n=210).
+calculation time: 4.08352(ms)
+gpu test21	finished.
+cpu test22	started (n=220).
+calculation time: 35.5521(ms)
+cpu test22	finished.
+gpu test22	started (n=220).
+calculation time: 4.39501(ms)
+gpu test22	finished.
+cpu test23	started (n=230).
+calculation time: 40.5624(ms)
+cpu test23	finished.
+gpu test23	started (n=230).
+calculation time: 4.68182(ms)
+gpu test23	finished.
+cpu test24	started (n=240).
+calculation time: 46.5378(ms)
+cpu test24	finished.
+gpu test24	started (n=240).
+calculation time: 6.01837(ms)
+gpu test24	finished.
+cpu test25	started (n=250).
+calculation time: 52.1527(ms)
+cpu test25	finished.
+gpu test25	started (n=250).
+calculation time: 6.21885(ms)
+gpu test25	finished.
+cpu test26	started (n=260).
+calculation time: 58.4948(ms)
+cpu test26	finished.
+gpu test26	started (n=260).
+calculation time: 6.6783(ms)
+gpu test26	finished.
+cpu test27	started (n=270).
+calculation time: 65.3197(ms)
+cpu test27	finished.
+gpu test27	started (n=270).
+calculation time: 7.04102(ms)
+gpu test27	finished.
+cpu test28	started (n=280).
+calculation time: 72.5879(ms)
+cpu test28	finished.
+gpu test28	started (n=280).
+calculation time: 9.96147(ms)
+gpu test28	finished.
+cpu test29	started (n=290).
+calculation time: 81.2957(ms)
+cpu test29	finished.
+gpu test29	started (n=290).
+calculation time: 7.97149(ms)
+gpu test29	finished.
+cpu test30	started (n=300).
+calculation time: 89.8739(ms)
+cpu test30	finished.
+gpu test30	started (n=300).
+calculation time: 11.2897(ms)
+gpu test30	finished.
+cpu test31	started (n=310).
+calculation time: 98.5846(ms)
+cpu test31	finished.
+gpu test31	started (n=310).
+calculation time: 10.9311(ms)
+gpu test31	finished.
+cpu test32	started (n=320).
+calculation time: 110.72(ms)
+cpu test32	finished.
+gpu test32	started (n=320).
+calculation time: 9.90464(ms)
+gpu test32	finished.
+cpu test33	started (n=330).
+calculation time: 118.332(ms)
+cpu test33	finished.
+gpu test33	started (n=330).
+calculation time: 9.74131(ms)
+gpu test33	finished.
+cpu test34	started (n=340).
+calculation time: 129.362(ms)
+cpu test34	finished.
+gpu test34	started (n=340).
+calculation time: 10.5333(ms)
+gpu test34	finished.
+cpu test35	started (n=350).
+calculation time: 140.887(ms)
+cpu test35	finished.
+gpu test35	started (n=350).
+calculation time: 12.1573(ms)
+gpu test35	finished.
+cpu test36	started (n=360).
+calculation time: 153.217(ms)
+cpu test36	finished.
+gpu test36	started (n=360).
+calculation time: 13.9509(ms)
+gpu test36	finished.
+cpu test37	started (n=370).
+calculation time: 166.803(ms)
+cpu test37	finished.
+gpu test37	started (n=370).
+calculation time: 13.395(ms)
+gpu test37	finished.
+cpu test38	started (n=380).
+calculation time: 180.114(ms)
+cpu test38	finished.
+gpu test38	started (n=380).
+calculation time: 14.9508(ms)
+gpu test38	finished.
+cpu test39	started (n=390).
+calculation time: 195.064(ms)
+cpu test39	finished.
+gpu test39	started (n=390).
+calculation time: 15.2846(ms)
+gpu test39	finished.
+cpu test40	started (n=400).
+calculation time: 211.787(ms)
+cpu test40	finished.
+gpu test40	started (n=400).
+calculation time: 17.3095(ms)
+gpu test40	finished.
+cpu test41	started (n=410).
+calculation time: 225.678(ms)
+cpu test41	finished.
+gpu test41	started (n=410).
+calculation time: 16.845(ms)
+gpu test41	finished.
+cpu test42	started (n=420).
+calculation time: 243.165(ms)
+cpu test42	finished.
+gpu test42	started (n=420).
+calculation time: 18.1884(ms)
+gpu test42	finished.
+cpu test43	started (n=430).
+calculation time: 260.223(ms)
+cpu test43	finished.
+gpu test43	started (n=430).
+calculation time: 18.5207(ms)
+gpu test43	finished.
+cpu test44	started (n=440).
+calculation time: 279.355(ms)
+cpu test44	finished.
+gpu test44	started (n=440).
+calculation time: 20.6589(ms)
+gpu test44	finished.
+cpu test45	started (n=450).
+calculation time: 298.458(ms)
+cpu test45	finished.
+gpu test45	started (n=450).
+calculation time: 20.3531(ms)
+gpu test45	finished.
+cpu test46	started (n=460).
+calculation time: 318.895(ms)
+cpu test46	finished.
+gpu test46	started (n=460).
+calculation time: 21.5343(ms)
+gpu test46	finished.
+cpu test47	started (n=470).
+calculation time: 339.046(ms)
+cpu test47	finished.
+gpu test47	started (n=470).
+calculation time: 23.4862(ms)
+gpu test47	finished.
+cpu test48	started (n=480).
+calculation time: 360.726(ms)
+cpu test48	finished.
+gpu test48	started (n=480).
+calculation time: 27.5386(ms)
+gpu test48	finished.
+cpu test49	started (n=490).
+calculation time: 384.32(ms)
+cpu test49	finished.
+gpu test49	started (n=490).
+calculation time: 26.8657(ms)
+gpu test49	finished.
+cpu test50	started (n=500).
+calculation time: 409.07(ms)
+cpu test50	finished.
+gpu test50	started (n=500).
+calculation time: 28.6923(ms)
+gpu test50	finished.
+cpu test51	started (n=510).
+calculation time: 434.116(ms)
+cpu test51	finished.
+gpu test51	started (n=510).
+calculation time: 29.1295(ms)
+gpu test51	finished.
+cpu test52	started (n=520).
+calculation time: 459.954(ms)
+cpu test52	finished.
+gpu test52	started (n=520).
+calculation time: 33.6138(ms)
+gpu test52	finished.
+cpu test53	started (n=530).
+calculation time: 486.809(ms)
+cpu test53	finished.
+gpu test53	started (n=530).
+calculation time: 33.2157(ms)
+gpu test53	finished.
+cpu test54	started (n=540).
+calculation time: 512.947(ms)
+cpu test54	finished.
+gpu test54	started (n=540).
+calculation time: 36.0117(ms)
+gpu test54	finished.
+cpu test55	started (n=550).
+calculation time: 544.09(ms)
+cpu test55	finished.
+gpu test55	started (n=550).
+calculation time: 38.5734(ms)
+gpu test55	finished.
+cpu test56	started (n=560).
+calculation time: 572.226(ms)
+cpu test56	finished.
+gpu test56	started (n=560).
+calculation time: 42.074(ms)
+gpu test56	finished.
+cpu test57	started (n=570).
+calculation time: 604.358(ms)
+cpu test57	finished.
+gpu test57	started (n=570).
+calculation time: 42.1988(ms)
+gpu test57	finished.
+cpu test58	started (n=580).
+calculation time: 643.049(ms)
+cpu test58	finished.
+gpu test58	started (n=580).
+calculation time: 50.3655(ms)
+gpu test58	finished.
+cpu test59	started (n=590).
+calculation time: 670.235(ms)
+cpu test59	finished.
+gpu test59	started (n=590).
+calculation time: 49.7747(ms)
+gpu test59	finished.
+cpu test60	started (n=600).
+calculation time: 704.368(ms)
+cpu test60	finished.
+gpu test60	started (n=600).
+calculation time: 51.7448(ms)
+gpu test60	finished.
+cpu test61	started (n=610).
+calculation time: 743.819(ms)
+cpu test61	finished.
+gpu test61	started (n=610).
+calculation time: 53.1908(ms)
+gpu test61	finished.
+cpu test62	started (n=620).
+calculation time: 779.397(ms)
+cpu test62	finished.
+gpu test62	started (n=620).
+calculation time: 56.9745(ms)
+gpu test62	finished.
+cpu test63	started (n=630).
+calculation time: 817.368(ms)
+cpu test63	finished.
+gpu test63	started (n=630).
+calculation time: 57.4195(ms)
+gpu test63	finished.
+cpu test64	started (n=640).
+calculation time: 856.283(ms)
+cpu test64	finished.
+gpu test64	started (n=640).
+calculation time: 64.644(ms)
+gpu test64	finished.
+cpu test65	started (n=650).
+calculation time: 901.736(ms)
+cpu test65	finished.
+gpu test65	started (n=650).
+calculation time: 61.7444(ms)
+gpu test65	finished.
+cpu test66	started (n=660).
+calculation time: 947.889(ms)
+cpu test66	finished.
+gpu test66	started (n=660).
+calculation time: 65.7275(ms)
+gpu test66	finished.
+cpu test67	started (n=670).
+calculation time: 985.375(ms)
+cpu test67	finished.
+gpu test67	started (n=670).
+calculation time: 68.1644(ms)
+gpu test67	finished.
+cpu test68	started (n=680).
+calculation time: 1029.92(ms)
+cpu test68	finished.
+gpu test68	started (n=680).
+calculation time: 72.9901(ms)
+gpu test68	finished.
+cpu test69	started (n=690).
+calculation time: 1076.8(ms)
+cpu test69	finished.
+gpu test69	started (n=690).
+calculation time: 72.1544(ms)
+gpu test69	finished.
+cpu test70	started (n=700).
+calculation time: 1121.68(ms)
+cpu test70	finished.
+gpu test70	started (n=700).
+calculation time: 76.8346(ms)
+gpu test70	finished.
+cpu test71	started (n=710).
+calculation time: 1168.5(ms)
+cpu test71	finished.
+gpu test71	started (n=710).
+calculation time: 78.0592(ms)
+gpu test71	finished.
+cpu test72	started (n=720).
+calculation time: 1227.57(ms)
+cpu test72	finished.
+gpu test72	started (n=720).
+calculation time: 88.6889(ms)
+gpu test72	finished.
+cpu test73	started (n=730).
+calculation time: 1275.26(ms)
+cpu test73	finished.
+gpu test73	started (n=730).
+calculation time: 84.777(ms)
+gpu test73	finished.
+cpu test74	started (n=740).
+calculation time: 1326.34(ms)
+cpu test74	finished.
+gpu test74	started (n=740).
+calculation time: 93.0202(ms)
+gpu test74	finished.
+cpu test75	started (n=750).
+calculation time: 1382.41(ms)
+cpu test75	finished.
+gpu test75	started (n=750).
+calculation time: 93.4025(ms)
+gpu test75	finished.
+cpu test76	started (n=760).
+calculation time: 1436.21(ms)
+cpu test76	finished.
+gpu test76	started (n=760).
+calculation time: 103.761(ms)
+gpu test76	finished.
+cpu test77	started (n=770).
+calculation time: 1498.41(ms)
+cpu test77	finished.
+gpu test77	started (n=770).
+calculation time: 103.222(ms)
+gpu test77	finished.
+cpu test78	started (n=780).
+calculation time: 1567.16(ms)
+cpu test78	finished.
+gpu test78	started (n=780).
+calculation time: 103.954(ms)
+gpu test78	finished.
+cpu test79	started (n=790).
+calculation time: 1621.14(ms)
+cpu test79	finished.
+gpu test79	started (n=790).
+calculation time: 110.311(ms)
+gpu test79	finished.
+cpu test80	started (n=800).
+calculation time: 1687.17(ms)
+cpu test80	finished.
+gpu test80	started (n=800).
+calculation time: 119.473(ms)
+gpu test80	finished.
+cpu test81	started (n=810).
+calculation time: 1752.78(ms)
+cpu test81	finished.
+gpu test81	started (n=810).
+calculation time: 116.343(ms)
+gpu test81	finished.
+cpu test82	started (n=820).
+calculation time: 1816.26(ms)
+cpu test82	finished.
+gpu test82	started (n=820).
+calculation time: 125.247(ms)
+gpu test82	finished.
+cpu test83	started (n=830).
+calculation time: 1886.63(ms)
+cpu test83	finished.
+gpu test83	started (n=830).
+calculation time: 126.724(ms)
+gpu test83	finished.
+cpu test84	started (n=840).
+calculation time: 1962.24(ms)
+cpu test84	finished.
+gpu test84	started (n=840).
+calculation time: 142.181(ms)
+gpu test84	finished.
+cpu test85	started (n=850).
+calculation time: 2025.09(ms)
+cpu test85	finished.
+gpu test85	started (n=850).
+calculation time: 140.173(ms)
+gpu test85	finished.
+cpu test86	started (n=860).
+calculation time: 2098.74(ms)
+cpu test86	finished.
+gpu test86	started (n=860).
+calculation time: 146.7(ms)
+gpu test86	finished.
+cpu test87	started (n=870).
+calculation time: 2175.25(ms)
+cpu test87	finished.
+gpu test87	started (n=870).
+calculation time: 154.018(ms)
+gpu test87	finished.
+cpu test88	started (n=880).
+calculation time: 2265.14(ms)
+cpu test88	finished.
+gpu test88	started (n=880).
+calculation time: 163.69(ms)
+gpu test88	finished.
+cpu test89	started (n=890).
+calculation time: 2350.34(ms)
+cpu test89	finished.
+gpu test89	started (n=890).
+calculation time: 162.112(ms)
+gpu test89	finished.
+cpu test90	started (n=900).
+calculation time: 2440.74(ms)
+cpu test90	finished.
+gpu test90	started (n=900).
+calculation time: 163.094(ms)
+gpu test90	finished.
+cpu test91	started (n=910).
+calculation time: 2506.21(ms)
+cpu test91	finished.
+gpu test91	started (n=910).
+calculation time: 162.578(ms)
+gpu test91	finished.
+cpu test92	started (n=920).
+calculation time: 2602.12(ms)
+cpu test92	finished.
+gpu test92	started (n=920).
+calculation time: 183.387(ms)
+gpu test92	finished.
+cpu test93	started (n=930).
+calculation time: 2691.54(ms)
+cpu test93	finished.
+gpu test93	started (n=930).
+calculation time: 191.01(ms)
+gpu test93	finished.
+cpu test94	started (n=940).
+calculation time: 2789.03(ms)
+cpu test94	finished.
+gpu test94	started (n=940).
+calculation time: 191.4(ms)
+gpu test94	finished.
+cpu test95	started (n=950).
+calculation time: 2889.24(ms)
+cpu test95	finished.
+gpu test95	started (n=950).
+calculation time: 188.887(ms)
+gpu test95	finished.
+cpu test96	started (n=960).
+calculation time: 2979.25(ms)
+cpu test96	finished.
+gpu test96	started (n=960).
+calculation time: 209.742(ms)
+gpu test96	finished.
+cpu test97	started (n=970).
+calculation time: 3093.83(ms)
+cpu test97	finished.
+gpu test97	started (n=970).
+calculation time: 201.178(ms)
+gpu test97	finished.
+cpu test98	started (n=980).
+calculation time: 3192.97(ms)
+cpu test98	finished.
+gpu test98	started (n=980).
+calculation time: 241.105(ms)
+gpu test98	finished.
+cpu test99	started (n=990).
+calculation time: 3299.14(ms)
+cpu test99	finished.
+gpu test99	started (n=990).
+calculation time: 216.888(ms)
+gpu test99	finished.
+cpu test100	started (n=1000).
+calculation time: 3411.4(ms)
+cpu test100	finished.
+gpu test100	started (n=1000).
+calculation time: 230.507(ms)
+gpu test100	finished.
+cpu test101	started (n=1010).
+calculation time: 3517.05(ms)
+cpu test101	finished.
+gpu test101	started (n=1010).
+calculation time: 223.063(ms)
+gpu test101	finished.
+cpu test102	started (n=1020).
+calculation time: 3633.46(ms)
+cpu test102	finished.
+gpu test102	started (n=1020).
+calculation time: 226.259(ms)
+gpu test102	finished.
+cpu test103	started (n=1030).
+calculation time: 3770.6(ms)
+cpu test103	finished.
+gpu test103	started (n=1030).
+calculation time: 265.641(ms)
+gpu test103	finished.
+cpu test104	started (n=1040).
+calculation time: 3880.45(ms)
+cpu test104	finished.
+gpu test104	started (n=1040).
+calculation time: 249.215(ms)
+gpu test104	finished.
+cpu test105	started (n=1050).
+calculation time: 4009.93(ms)
+cpu test105	finished.
+gpu test105	started (n=1050).
+calculation time: 264.135(ms)
+gpu test105	finished.
+cpu test106	started (n=1060).
+calculation time: 4143.64(ms)
+cpu test106	finished.
+gpu test106	started (n=1060).
+calculation time: 269.538(ms)
+gpu test106	finished.
+cpu test107	started (n=1070).
+calculation time: 4269.53(ms)
+cpu test107	finished.
+gpu test107	started (n=1070).
+calculation time: 259.271(ms)
+gpu test107	finished.
+cpu test108	started (n=1080).
+calculation time: 4392.62(ms)
+cpu test108	finished.
+gpu test108	started (n=1080).
+calculation time: 305.874(ms)
+gpu test108	finished.
+cpu test109	started (n=1090).
+calculation time: 4558.63(ms)
+cpu test109	finished.
+gpu test109	started (n=1090).
+calculation time: 314.233(ms)
+gpu test109	finished.
+cpu test110	started (n=1100).
+calculation time: 4675.21(ms)
+cpu test110	finished.
+gpu test110	started (n=1100).
+calculation time: 309.382(ms)
+gpu test110	finished.
+cpu test111	started (n=1110).
+calculation time: 4824.31(ms)
+cpu test111	finished.
+gpu test111	started (n=1110).
+calculation time: 307.562(ms)
+gpu test111	finished.
+cpu test112	started (n=1120).
+calculation time: 4966.02(ms)
+cpu test112	finished.
+gpu test112	started (n=1120).
+calculation time: 314.159(ms)
+gpu test112	finished.
+cpu test113	started (n=1130).
+calculation time: 5123.82(ms)
+cpu test113	finished.
+gpu test113	started (n=1130).
+calculation time: 305.37(ms)
+gpu test113	finished.
+cpu test114	started (n=1140).
+calculation time: 5256.73(ms)
+cpu test114	finished.
+gpu test114	started (n=1140).
+calculation time: 323.211(ms)
+gpu test114	finished.
+cpu test115	started (n=1150).
+calculation time: 5402.62(ms)
+cpu test115	finished.
+gpu test115	started (n=1150).
+calculation time: 335.073(ms)
+gpu test115	finished.
+cpu test116	started (n=1160).
+calculation time: 5575.5(ms)
+cpu test116	finished.
+gpu test116	started (n=1160).
+calculation time: 381.362(ms)
+gpu test116	finished.
+cpu test117	started (n=1170).
+calculation time: 5739.46(ms)
+cpu test117	finished.
+gpu test117	started (n=1170).
+calculation time: 334.627(ms)
+gpu test117	finished.
+cpu test118	started (n=1180).
+calculation time: 5885.22(ms)
+cpu test118	finished.
+gpu test118	started (n=1180).
+calculation time: 405.035(ms)
+gpu test118	finished.
+cpu test119	started (n=1190).
+calculation time: 6046.36(ms)
+cpu test119	finished.
+gpu test119	started (n=1190).
+calculation time: 370.536(ms)
+gpu test119	finished.
+cpu test120	started (n=1200).
+calculation time: 6230.76(ms)
+cpu test120	finished.
+gpu test120	started (n=1200).
+calculation time: 393.968(ms)
+gpu test120	finished.
+cpu test121	started (n=1210).
+calculation time: 6380.77(ms)
+cpu test121	finished.
+gpu test121	started (n=1210).
+calculation time: 388.039(ms)
+gpu test121	finished.
+cpu test122	started (n=1220).
+calculation time: 6542.97(ms)
+cpu test122	finished.
+gpu test122	started (n=1220).
+calculation time: 406.95(ms)
+gpu test122	finished.
+cpu test123	started (n=1230).
+calculation time: 6714.05(ms)
+cpu test123	finished.
+gpu test123	started (n=1230).
+calculation time: 418.676(ms)
+gpu test123	finished.
+cpu test124	started (n=1240).
+calculation time: 6887.83(ms)
+cpu test124	finished.
+gpu test124	started (n=1240).
+calculation time: 448.743(ms)
+gpu test124	finished.
+cpu test125	started (n=1250).
+calculation time: 7055.15(ms)
+cpu test125	finished.
+gpu test125	started (n=1250).
+calculation time: 435.3(ms)
+gpu test125	finished.
+cpu test126	started (n=1260).
+calculation time: 7233.68(ms)
+cpu test126	finished.
+gpu test126	started (n=1260).
+calculation time: 425.944(ms)
+gpu test126	finished.
+cpu test127	started (n=1270).
+calculation time: 7414.91(ms)
+cpu test127	finished.
+gpu test127	started (n=1270).
+calculation time: 450.973(ms)
+gpu test127	finished.
+cpu test128	started (n=1280).
+calculation time: 7567.71(ms)
+cpu test128	finished.
+gpu test128	started (n=1280).
+calculation time: 486.696(ms)
+gpu test128	finished.
+cpu test129	started (n=1290).
+calculation time: 7785.51(ms)
+cpu test129	finished.
+gpu test129	started (n=1290).
+calculation time: 500.705(ms)
+gpu test129	finished.
+cpu test130	started (n=1300).
+calculation time: 7968.6(ms)
+cpu test130	finished.
+gpu test130	started (n=1300).
+calculation time: 483.034(ms)
+gpu test130	finished.
+cpu test131	started (n=1310).
+calculation time: 8167.39(ms)
+cpu test131	finished.
+gpu test131	started (n=1310).
+calculation time: 508.809(ms)
+gpu test131	finished.
+cpu test132	started (n=1320).
+calculation time: 8357.88(ms)
+cpu test132	finished.
+gpu test132	started (n=1320).
+calculation time: 523.815(ms)
+gpu test132	finished.
+cpu test133	started (n=1330).
+calculation time: 8537.31(ms)
+cpu test133	finished.
+gpu test133	started (n=1330).
+calculation time: 548.143(ms)
+gpu test133	finished.
+cpu test134	started (n=1340).
+calculation time: 8742.96(ms)
+cpu test134	finished.
+gpu test134	started (n=1340).
+calculation time: 598.456(ms)
+gpu test134	finished.
+cpu test135	started (n=1350).
+calculation time: 8973.34(ms)
+cpu test135	finished.
+gpu test135	started (n=1350).
+calculation time: 514.111(ms)
+gpu test135	finished.
+cpu test136	started (n=1360).
+calculation time: 9133.41(ms)
+cpu test136	finished.
+gpu test136	started (n=1360).
+calculation time: 574.274(ms)
+gpu test136	finished.
+cpu test137	started (n=1370).
+calculation time: 9364.57(ms)
+cpu test137	finished.
+gpu test137	started (n=1370).
+calculation time: 582.464(ms)
+gpu test137	finished.
+cpu test138	started (n=1380).
+calculation time: 9573.65(ms)
+cpu test138	finished.
+gpu test138	started (n=1380).
+calculation time: 580.628(ms)
+gpu test138	finished.
+cpu test139	started (n=1390).
+calculation time: 9781.42(ms)
+cpu test139	finished.
+gpu test139	started (n=1390).
+calculation time: 604.846(ms)
+gpu test139	finished.
+cpu test140	started (n=1400).
+calculation time: 10014.4(ms)
+cpu test140	finished.
+gpu test140	started (n=1400).
+calculation time: 625.697(ms)
+gpu test140	finished.
+cpu test141	started (n=1410).
+calculation time: 10231(ms)
+cpu test141	finished.
+gpu test141	started (n=1410).
+calculation time: 624.936(ms)
+gpu test141	finished.
+cpu test142	started (n=1420).
+calculation time: 10464.5(ms)
+cpu test142	finished.
+gpu test142	started (n=1420).
+calculation time: 648.105(ms)
+gpu test142	finished.
+cpu test143	started (n=1430).
+calculation time: 10685.7(ms)
+cpu test143	finished.
+gpu test143	started (n=1430).
+calculation time: 676.631(ms)
+gpu test143	finished.
+cpu test144	started (n=1440).
+calculation time: 10902.3(ms)
+cpu test144	finished.
+gpu test144	started (n=1440).
+calculation time: 668.085(ms)
+gpu test144	finished.
+cpu test145	started (n=1450).
+calculation time: 11146.4(ms)
+cpu test145	finished.
+gpu test145	started (n=1450).
+calculation time: 762.246(ms)
+gpu test145	finished.
+cpu test146	started (n=1460).
+calculation time: 11360.2(ms)
+cpu test146	finished.
+gpu test146	started (n=1460).
+calculation time: 732.772(ms)
+gpu test146	finished.
+cpu test147	started (n=1470).
+calculation time: 11586.7(ms)
+cpu test147	finished.
+gpu test147	started (n=1470).
+calculation time: 678.88(ms)
+gpu test147	finished.
+cpu test148	started (n=1480).
+calculation time: 11775.7(ms)
+cpu test148	finished.
+gpu test148	started (n=1480).
+calculation time: 716.325(ms)
+gpu test148	finished.
+cpu test149	started (n=1490).
+calculation time: 12074.4(ms)
+cpu test149	finished.
+gpu test149	started (n=1490).
+calculation time: 704.288(ms)
+gpu test149	finished.
+cpu test150	started (n=1500).
+calculation time: 12308.2(ms)
+cpu test150	finished.
+gpu test150	started (n=1500).
+calculation time: 742.204(ms)
+gpu test150	finished.
+cpu test151	started (n=1510).
+calculation time: 12568.6(ms)
+cpu test151	finished.
+gpu test151	started (n=1510).
+calculation time: 739.312(ms)
+gpu test151	finished.
+cpu test152	started (n=1520).
+calculation time: 12853.1(ms)
+cpu test152	finished.
+gpu test152	started (n=1520).
+calculation time: 817.447(ms)
+gpu test152	finished.
+cpu test153	started (n=1530).
+calculation time: 13055.6(ms)
+cpu test153	finished.
+gpu test153	started (n=1530).
+calculation time: 734.602(ms)
+gpu test153	finished.
+cpu test154	started (n=1540).
+calculation time: 13378.2(ms)
+cpu test154	finished.
+gpu test154	started (n=1540).
+calculation time: 793.083(ms)
+gpu test154	finished.
+cpu test155	started (n=1550).
+calculation time: 13679.2(ms)
+cpu test155	finished.
+gpu test155	started (n=1550).
+calculation time: 798.264(ms)
+gpu test155	finished.
+cpu test156	started (n=1560).
+calculation time: 13850.8(ms)
+cpu test156	finished.
+gpu test156	started (n=1560).
+calculation time: 792.482(ms)
+gpu test156	finished.
+cpu test157	started (n=1570).
+calculation time: 14171.6(ms)
+cpu test157	finished.
+gpu test157	started (n=1570).
+calculation time: 857.493(ms)
+gpu test157	finished.
+cpu test158	started (n=1580).
+calculation time: 14391.5(ms)
+cpu test158	finished.
+gpu test158	started (n=1580).
+calculation time: 910.163(ms)
+gpu test158	finished.
+cpu test159	started (n=1590).
+calculation time: 14708.7(ms)
+cpu test159	finished.
+gpu test159	started (n=1590).
+calculation time: 894.769(ms)
+gpu test159	finished.
+cpu test160	started (n=1600).
+calculation time: 15024.1(ms)
+cpu test160	finished.
+gpu test160	started (n=1600).
+calculation time: 889.416(ms)
+gpu test160	finished.
+cpu test161	started (n=1610).
+calculation time: 15271.1(ms)
+cpu test161	finished.
+gpu test161	started (n=1610).
+calculation time: 904.304(ms)
+gpu test161	finished.
+cpu test162	started (n=1620).
+calculation time: 15548(ms)
+cpu test162	finished.
+gpu test162	started (n=1620).
+calculation time: 946.029(ms)
+gpu test162	finished.
+cpu test163	started (n=1630).
+calculation time: 15874.9(ms)
+cpu test163	finished.
+gpu test163	started (n=1630).
+calculation time: 1009.2(ms)
+gpu test163	finished.
+cpu test164	started (n=1640).
+calculation time: 16119(ms)
+cpu test164	finished.
+gpu test164	started (n=1640).
+calculation time: 986.776(ms)
+gpu test164	finished.
+cpu test165	started (n=1650).
+calculation time: 16473.4(ms)
+cpu test165	finished.
+gpu test165	started (n=1650).
+calculation time: 1082.22(ms)
+gpu test165	finished.
+cpu test166	started (n=1660).
+calculation time: 16761.9(ms)
+cpu test166	finished.
+gpu test166	started (n=1660).
+calculation time: 1059.78(ms)
+gpu test166	finished.
+cpu test167	started (n=1670).
+calculation time: 17013.2(ms)
+cpu test167	finished.
+gpu test167	started (n=1670).
+calculation time: 1041.68(ms)
+gpu test167	finished.
+cpu test168	started (n=1680).
+calculation time: 17360.3(ms)
+cpu test168	finished.
+gpu test168	started (n=1680).
+calculation time: 1018.92(ms)
+gpu test168	finished.
+cpu test169	started (n=1690).
+calculation time: 17652.2(ms)
+cpu test169	finished.
+gpu test169	started (n=1690).
+calculation time: 1025.07(ms)
+gpu test169	finished.
+cpu test170	started (n=1700).
+calculation time: 17971.9(ms)
+cpu test170	finished.
+gpu test170	started (n=1700).
+calculation time: 1050.97(ms)
+gpu test170	finished.
+cpu test171	started (n=1710).
+calculation time: 18331.2(ms)
+cpu test171	finished.
+gpu test171	started (n=1710).
+calculation time: 1101.03(ms)
+gpu test171	finished.
+cpu test172	started (n=1720).
+calculation time: 18621.5(ms)
+cpu test172	finished.
+gpu test172	started (n=1720).
+calculation time: 1153.29(ms)
+gpu test172	finished.
+cpu test173	started (n=1730).
+calculation time: 18965.5(ms)
+cpu test173	finished.
+gpu test173	started (n=1730).
+calculation time: 1107.24(ms)
+gpu test173	finished.
+cpu test174	started (n=1740).
+calculation time: 19234.4(ms)
+cpu test174	finished.
+gpu test174	started (n=1740).
+calculation time: 1580.04(ms)
+gpu test174	finished.
+cpu test175	started (n=1750).
+calculation time: 19537.8(ms)
+cpu test175	finished.
+gpu test175	started (n=1750).
+calculation time: 1198.95(ms)
+gpu test175	finished.
+cpu test176	started (n=1760).
+calculation time: 19981(ms)
+cpu test176	finished.
+gpu test176	started (n=1760).
+calculation time: 1164.54(ms)
+gpu test176	finished.
+cpu test177	started (n=1770).
+calculation time: 20364(ms)
+cpu test177	finished.
+gpu test177	started (n=1770).
+calculation time: 1229.85(ms)
+gpu test177	finished.
+cpu test178	started (n=1780).
+calculation time: 20668.2(ms)
+cpu test178	finished.
+gpu test178	started (n=1780).
+calculation time: 1250.62(ms)
+gpu test178	finished.
+cpu test179	started (n=1790).
+calculation time: 20991.6(ms)
+cpu test179	finished.
+gpu test179	started (n=1790).
+calculation time: 1302.94(ms)
+gpu test179	finished.
+cpu test180	started (n=1800).
+calculation time: 21338.1(ms)
+cpu test180	finished.
+gpu test180	started (n=1800).
+calculation time: 1212.72(ms)
+gpu test180	finished.
+cpu test181	started (n=1810).
+calculation time: 21714.4(ms)
+cpu test181	finished.
+gpu test181	started (n=1810).
+calculation time: 1301.37(ms)
+gpu test181	finished.
+cpu test182	started (n=1820).
+calculation time: 22100.6(ms)
+cpu test182	finished.
+gpu test182	started (n=1820).
+calculation time: 1239.35(ms)
+gpu test182	finished.
+cpu test183	started (n=1830).
+calculation time: 22595.3(ms)
+cpu test183	finished.
+gpu test183	started (n=1830).
+calculation time: 1371.17(ms)
+gpu test183	finished.
+cpu test184	started (n=1840).
+calculation time: 22837.2(ms)
+cpu test184	finished.
+gpu test184	started (n=1840).
+calculation time: 1470.74(ms)
+gpu test184	finished.
+cpu test185	started (n=1850).
+calculation time: 23114.7(ms)
+cpu test185	finished.
+gpu test185	started (n=1850).
+calculation time: 1351.41(ms)
+gpu test185	finished.
+cpu test186	started (n=1860).
+calculation time: 23580.4(ms)
+cpu test186	finished.
+gpu test186	started (n=1860).
+calculation time: 1632.91(ms)
+gpu test186	finished.
+cpu test187	started (n=1870).
+calculation time: 23933.2(ms)
+cpu test187	finished.
+gpu test187	started (n=1870).
+calculation time: 1414.35(ms)
+gpu test187	finished.
+cpu test188	started (n=1880).
+calculation time: 24361.2(ms)
+cpu test188	finished.
+gpu test188	started (n=1880).
+calculation time: 1612.79(ms)
+gpu test188	finished.
+cpu test189	started (n=1890).
+calculation time: 24783.7(ms)
+cpu test189	finished.
+gpu test189	started (n=1890).
+calculation time: 1454.48(ms)
+gpu test189	finished.
+cpu test190	started (n=1900).
+calculation time: 25135.8(ms)
+cpu test190	finished.
+gpu test190	started (n=1900).
+calculation time: 1499.28(ms)
+gpu test190	finished.
+cpu test191	started (n=1910).
+calculation time: 25419.2(ms)
+cpu test191	finished.
+gpu test191	started (n=1910).
+calculation time: 1575.72(ms)
+gpu test191	finished.
+cpu test192	started (n=1920).
+calculation time: 25841.5(ms)
+cpu test192	finished.
+gpu test192	started (n=1920).
+calculation time: 1683.55(ms)
+gpu test192	finished.
+cpu test193	started (n=1930).
+calculation time: 26183.1(ms)
+cpu test193	finished.
+gpu test193	started (n=1930).
+calculation time: 2153.54(ms)
+gpu test193	finished.
+cpu test194	started (n=1940).
+calculation time: 26704(ms)
+cpu test194	finished.
+gpu test194	started (n=1940).
+calculation time: 1706.78(ms)
+gpu test194	finished.
+cpu test195	started (n=1950).
+calculation time: 27209.4(ms)
+cpu test195	finished.
+gpu test195	started (n=1950).
+calculation time: 1832.04(ms)
+gpu test195	finished.
+cpu test196	started (n=1960).
+calculation time: 27566.4(ms)
+cpu test196	finished.
+gpu test196	started (n=1960).
+calculation time: 1724.26(ms)
+gpu test196	finished.
+cpu test197	started (n=1970).
+calculation time: 27919(ms)
+cpu test197	finished.
+gpu test197	started (n=1970).
+calculation time: 1679.51(ms)
+gpu test197	finished.
+cpu test198	started (n=1980).
+calculation time: 28382.7(ms)
+cpu test198	finished.
+gpu test198	started (n=1980).
+calculation time: 1825.96(ms)
+gpu test198	finished.
+cpu test199	started (n=1990).
+calculation time: 28769.6(ms)
+cpu test199	finished.
+gpu test199	started (n=1990).
+calculation time: 1720.82(ms)
+gpu test199	finished.
+cpu test200	started (n=2000).
+calculation time: 29290.7(ms)
+cpu test200	finished.
+gpu test200	started (n=2000).
+calculation time: 1791(ms)
+gpu test200	finished.
+cpu test201	started (n=2010).
+calculation time: 29792(ms)
+cpu test201	finished.
+gpu test201	started (n=2010).
+calculation time: 1961.26(ms)
+gpu test201	finished.
+cpu test202	started (n=2020).
+calculation time: 30115.1(ms)
+cpu test202	finished.
+gpu test202	started (n=2020).
+calculation time: 2139(ms)
+gpu test202	finished.
+cpu test203	started (n=2030).
+calculation time: 30545.3(ms)
+cpu test203	finished.
+gpu test203	started (n=2030).
+calculation time: 1856.05(ms)
+gpu test203	finished.
+cpu test204	started (n=2040).
+calculation time: 31015.5(ms)
+cpu test204	finished.
+gpu test204	started (n=2040).
+calculation time: 1788.87(ms)
+gpu test204	finished.
+cpu test205	started (n=2050).
+calculation time: 31538.1(ms)
+cpu test205	finished.
+gpu test205	started (n=2050).
+calculation time: 1899.57(ms)
+gpu test205	finished.
+cpu test206	started (n=2060).
+calculation time: 31899.2(ms)
+cpu test206	finished.
+gpu test206	started (n=2060).
+calculation time: 2936.49(ms)
+gpu test206	finished.
+cpu test207	started (n=2070).
+calculation time: 32435.8(ms)
+cpu test207	finished.
+gpu test207	started (n=2070).
+calculation time: 2070.81(ms)
+gpu test207	finished.
+cpu test208	started (n=2080).
+calculation time: 32981.2(ms)
+cpu test208	finished.
+gpu test208	started (n=2080).
+calculation time: 1975.12(ms)
+gpu test208	finished.
+cpu test209	started (n=2090).
+calculation time: 33375.7(ms)
+cpu test209	finished.
+gpu test209	started (n=2090).
+calculation time: 2215.78(ms)
+gpu test209	finished.
+cpu test210	started (n=2100).
+calculation time: 33918(ms)
+cpu test210	finished.
+gpu test210	started (n=2100).
+calculation time: 2149.88(ms)
+gpu test210	finished.
+cpu test211	started (n=2110).
+calculation time: 34349(ms)
+cpu test211	finished.
+gpu test211	started (n=2110).
+calculation time: 2043.44(ms)
+gpu test211	finished.
+cpu test212	started (n=2120).
+calculation time: 34821.9(ms)
+cpu test212	finished.
+gpu test212	started (n=2120).
+calculation time: 2381.29(ms)
+gpu test212	finished.
+cpu test213	started (n=2130).
+calculation time: 35229(ms)
+cpu test213	finished.
+gpu test213	started (n=2130).
+calculation time: 2290.61(ms)
+gpu test213	finished.
+cpu test214	started (n=2140).
+calculation time: 35909.3(ms)
+cpu test214	finished.
+gpu test214	started (n=2140).
+calculation time: 2313.33(ms)
+gpu test214	finished.
+cpu test215	started (n=2150).
+calculation time: 36274.1(ms)
+cpu test215	finished.
+gpu test215	started (n=2150).
+calculation time: 2302.1(ms)
+gpu test215	finished.
+cpu test216	started (n=2160).
+calculation time: 36779.6(ms)
+cpu test216	finished.
+gpu test216	started (n=2160).
+calculation time: 2406.82(ms)
+gpu test216	finished.
+cpu test217	started (n=2170).
+calculation time: 37284.3(ms)
+cpu test217	finished.
+gpu test217	started (n=2170).
+calculation time: 2730.19(ms)
+gpu test217	finished.
+cpu test218	started (n=2180).
+calculation time: 37896.1(ms)
+cpu test218	finished.
+gpu test218	started (n=2180).
+calculation time: 2430.03(ms)
+gpu test218	finished.
+cpu test219	started (n=2190).
+calculation time: 38390.8(ms)
+cpu test219	finished.
+gpu test219	started (n=2190).
+calculation time: 3102.4(ms)
+gpu test219	finished.
+cpu test220	started (n=2200).
+calculation time: 38928.4(ms)
+cpu test220	finished.
+gpu test220	started (n=2200).
+calculation time: 2806.45(ms)
+gpu test220	finished.
+cpu test221	started (n=2210).
+calculation time: 39287.7(ms)
+cpu test221	finished.
+gpu test221	started (n=2210).
+calculation time: 2486.92(ms)
+gpu test221	finished.
+cpu test222	started (n=2220).
+calculation time: 39975.3(ms)
+cpu test222	finished.
+gpu test222	started (n=2220).
+calculation time: 2820.17(ms)
+gpu test222	finished.
+cpu test223	started (n=2230).
+calculation time: 40582.6(ms)
+cpu test223	finished.
+gpu test223	started (n=2230).
+calculation time: 2593.35(ms)
+gpu test223	finished.
+cpu test224	started (n=2240).
+calculation time: 40854.3(ms)
+cpu test224	finished.
+gpu test224	started (n=2240).
+calculation time: 2893.78(ms)
+gpu test224	finished.
+cpu test225	started (n=2250).
+calculation time: 41551.9(ms)
+cpu test225	finished.
+gpu test225	started (n=2250).
+calculation time: 2520.96(ms)
+gpu test225	finished.
+cpu test226	started (n=2260).
+calculation time: 42097.6(ms)
+cpu test226	finished.
+gpu test226	started (n=2260).
+calculation time: 2702(ms)
+gpu test226	finished.
+cpu test227	started (n=2270).
+calculation time: 42583.4(ms)
+cpu test227	finished.
+gpu test227	started (n=2270).
+calculation time: 2842.91(ms)
+gpu test227	finished.
+cpu test228	started (n=2280).
+calculation time: 43222(ms)
+cpu test228	finished.
+gpu test228	started (n=2280).
+calculation time: 2717.32(ms)
+gpu test228	finished.
+cpu test229	started (n=2290).
+calculation time: 43815.6(ms)
+cpu test229	finished.
+gpu test229	started (n=2290).
+calculation time: 2944.4(ms)
+gpu test229	finished.
+cpu test230	started (n=2300).
+calculation time: 44278.9(ms)
+cpu test230	finished.
+gpu test230	started (n=2300).
+calculation time: 2907.76(ms)
+gpu test230	finished.
+cpu test231	started (n=2310).
+calculation time: 44914.9(ms)
+cpu test231	finished.
+gpu test231	started (n=2310).
+calculation time: 3036.57(ms)
+gpu test231	finished.
+cpu test232	started (n=2320).
+calculation time: 45521.6(ms)
+cpu test232	finished.
+gpu test232	started (n=2320).
+calculation time: 3178.56(ms)
+gpu test232	finished.
+cpu test233	started (n=2330).
+calculation time: 46180.2(ms)
+cpu test233	finished.
+gpu test233	started (n=2330).
+calculation time: 2914.17(ms)
+gpu test233	finished.
+cpu test234	started (n=2340).
+calculation time: 46758.9(ms)
+cpu test234	finished.
+gpu test234	started (n=2340).
+calculation time: 2856.54(ms)
+gpu test234	finished.
+cpu test235	started (n=2350).
+calculation time: 47203.5(ms)
+cpu test235	finished.
+gpu test235	started (n=2350).
+calculation time: 3067.88(ms)
+gpu test235	finished.
+cpu test236	started (n=2360).
+calculation time: 47986.5(ms)
+cpu test236	finished.
+gpu test236	started (n=2360).
+calculation time: 4261(ms)
+gpu test236	finished.
+cpu test237	started (n=2370).
+calculation time: 48405.1(ms)
+cpu test237	finished.
+gpu test237	started (n=2370).
+calculation time: 3259.14(ms)
+gpu test237	finished.
+cpu test238	started (n=2380).
+calculation time: 49219.2(ms)
+cpu test238	finished.
+gpu test238	started (n=2380).
+calculation time: 3162.17(ms)
+gpu test238	finished.
+cpu test239	started (n=2390).
+calculation time: 49795.1(ms)
+cpu test239	finished.
+gpu test239	started (n=2390).
+calculation time: 3090.45(ms)
+gpu test239	finished.
+cpu test240	started (n=2400).
+calculation time: 50216.1(ms)
+cpu test240	finished.
+gpu test240	started (n=2400).
+calculation time: 3215.25(ms)
+gpu test240	finished.
+cpu test241	started (n=2410).
+calculation time: 50939.9(ms)
+cpu test241	finished.
+gpu test241	started (n=2410).
+calculation time: 3480.57(ms)
+gpu test241	finished.
+cpu test242	started (n=2420).
+calculation time: 51485(ms)
+cpu test242	finished.
+gpu test242	started (n=2420).
+calculation time: 3973.91(ms)
+gpu test242	finished.
+cpu test243	started (n=2430).
+calculation time: 52284.5(ms)
+cpu test243	finished.
+gpu test243	started (n=2430).
+calculation time: 3515.86(ms)
+gpu test243	finished.
+cpu test244	started (n=2440).
+calculation time: 52861.4(ms)
+cpu test244	finished.
+gpu test244	started (n=2440).
+calculation time: 3343.94(ms)
+gpu test244	finished.
+cpu test245	started (n=2450).
+calculation time: 53661.2(ms)
+cpu test245	finished.
+gpu test245	started (n=2450).
+calculation time: 3664.74(ms)
+gpu test245	finished.
+cpu test246	started (n=2460).
+calculation time: 54436.4(ms)
+cpu test246	finished.
+gpu test246	started (n=2460).
+calculation time: 4135.09(ms)
+gpu test246	finished.
+cpu test247	started (n=2470).
+calculation time: 54902.7(ms)
+cpu test247	finished.
+gpu test247	started (n=2470).
+calculation time: 3814.17(ms)
+gpu test247	finished.
+cpu test248	started (n=2480).
+calculation time: 55560.3(ms)
+cpu test248	finished.
+gpu test248	started (n=2480).
+calculation time: 4072.16(ms)
+gpu test248	finished.
+cpu test249	started (n=2490).
+calculation time: 56409.9(ms)
+cpu test249	finished.
+gpu test249	started (n=2490).
+calculation time: 3847.62(ms)
+gpu test249	finished.
+cpu test250	started (n=2500).
+calculation time: 56922.4(ms)
+cpu test250	finished.
+gpu test250	started (n=2500).
+calculation time: 3908.95(ms)
+gpu test250	finished.
+cpu test251	started (n=2510).
+calculation time: 57802.6(ms)
+cpu test251	finished.
+gpu test251	started (n=2510).
+calculation time: 4155.2(ms)
+gpu test251	finished.
+cpu test252	started (n=2520).
+calculation time: 58410.9(ms)
+cpu test252	finished.
+gpu test252	started (n=2520).
+calculation time: 3767.51(ms)
+gpu test252	finished.
+cpu test253	started (n=2530).
+calculation time: 59137.9(ms)
+cpu test253	finished.
+gpu test253	started (n=2530).
+calculation time: 4064.49(ms)
+gpu test253	finished.
+cpu test254	started (n=2540).
+calculation time: 59982.6(ms)
+cpu test254	finished.
+gpu test254	started (n=2540).
+calculation time: 3913.23(ms)
+gpu test254	finished.
+cpu test255	started (n=2550).
+calculation time: 60424.5(ms)
+cpu test255	finished.
+gpu test255	started (n=2550).
+calculation time: 3869.46(ms)
+gpu test255	finished.
+cpu test256	started (n=2560).
+calculation time: 61119.9(ms)
+cpu test256	finished.
+gpu test256	started (n=2560).
+calculation time: 4144.03(ms)
+gpu test256	finished.
+cpu test257	started (n=2570).
+calculation time: 62046.5(ms)
+cpu test257	finished.
+gpu test257	started (n=2570).
+calculation time: 3668.84(ms)
+gpu test257	finished.
+cpu test258	started (n=2580).
+calculation time: 62551.9(ms)
+cpu test258	finished.
+gpu test258	started (n=2580).
+calculation time: 4286.12(ms)
+gpu test258	finished.
+cpu test259	started (n=2590).
+calculation time: 63485.7(ms)
+cpu test259	finished.
+gpu test259	started (n=2590).
+calculation time: 4335.23(ms)
+gpu test259	finished.
+cpu test260	started (n=2600).
+calculation time: 64188.5(ms)
+cpu test260	finished.
+gpu test260	started (n=2600).
+calculation time: 4145.02(ms)
+gpu test260	finished.
+cpu test261	started (n=2610).
+calculation time: 64803.2(ms)
+cpu test261	finished.
+gpu test261	started (n=2610).
+calculation time: 4285.54(ms)
+gpu test261	finished.
+cpu test262	started (n=2620).
+calculation time: 65478.8(ms)
+cpu test262	finished.
+gpu test262	started (n=2620).
+calculation time: 4508.14(ms)
+gpu test262	finished.
+cpu test263	started (n=2630).
+calculation time: 66348.3(ms)
+cpu test263	finished.
+gpu test263	started (n=2630).
+calculation time: 4873.67(ms)
+gpu test263	finished.
+cpu test264	started (n=2640).
+calculation time: 66997.1(ms)
+cpu test264	finished.
+gpu test264	started (n=2640).
+calculation time: 4757.49(ms)
+gpu test264	finished.
+cpu test265	started (n=2650).
+calculation time: 67611.8(ms)
+cpu test265	finished.
+gpu test265	started (n=2650).
+calculation time: 4723.14(ms)
+gpu test265	finished.
+cpu test266	started (n=2660).
+calculation time: 68559.1(ms)
+cpu test266	finished.
+gpu test266	started (n=2660).
+calculation time: 4658.67(ms)
+gpu test266	finished.
+cpu test267	started (n=2670).
+calculation time: 69352.6(ms)
+cpu test267	finished.
+gpu test267	started (n=2670).
+calculation time: 4496.88(ms)
+gpu test267	finished.
+cpu test268	started (n=2680).
+calculation time: 69988.8(ms)
+cpu test268	finished.
+gpu test268	started (n=2680).
+calculation time: 5310.91(ms)
+gpu test268	finished.
+cpu test269	started (n=2690).
+calculation time: 70759.2(ms)
+cpu test269	finished.
+gpu test269	started (n=2690).
+calculation time: 4514.53(ms)
+gpu test269	finished.
+cpu test270	started (n=2700).
+calculation time: 72097.2(ms)
+cpu test270	finished.
+gpu test270	started (n=2700).
+calculation time: 5083.05(ms)
+gpu test270	finished.
+cpu test271	started (n=2710).
+calculation time: 72495.3(ms)
+cpu test271	finished.
+gpu test271	started (n=2710).
+calculation time: 5483.71(ms)
+gpu test271	finished.
+cpu test272	started (n=2720).
+calculation time: 73113.6(ms)
+cpu test272	finished.
+gpu test272	started (n=2720).
+calculation time: 4839.2(ms)
+gpu test272	finished.
+cpu test273	started (n=2730).
+calculation time: 74072.9(ms)
+cpu test273	finished.
+gpu test273	started (n=2730).
+calculation time: 4287.45(ms)
+gpu test273	finished.
+cpu test274	started (n=2740).
+calculation time: 74647.4(ms)
+cpu test274	finished.
+gpu test274	started (n=2740).
+calculation time: 6220.91(ms)
+gpu test274	finished.
+cpu test275	started (n=2750).
+calculation time: 75456.5(ms)
+cpu test275	finished.
+gpu test275	started (n=2750).
+calculation time: 6508.08(ms)
+gpu test275	finished.
+cpu test276	started (n=2760).
+calculation time: 76567.4(ms)
+cpu test276	finished.
+gpu test276	started (n=2760).
+calculation time: 5548.55(ms)
+gpu test276	finished.
+cpu test277	started (n=2770).
+calculation time: 77416.9(ms)
+cpu test277	finished.
+gpu test277	started (n=2770).
+calculation time: 5547.94(ms)
+gpu test277	finished.
+cpu test278	started (n=2780).
+calculation time: 78314.8(ms)
+cpu test278	finished.
+gpu test278	started (n=2780).
+calculation time: 5326.25(ms)
+gpu test278	finished.
+cpu test279	started (n=2790).
+calculation time: 79180.9(ms)
+cpu test279	finished.
+gpu test279	started (n=2790).
+calculation time: 6207.17(ms)
+gpu test279	finished.
+cpu test280	started (n=2800).
+calculation time: 80057.6(ms)
+cpu test280	finished.
+gpu test280	started (n=2800).
+calculation time: 5794.07(ms)
+gpu test280	finished.
+cpu test281	started (n=2810).
+calculation time: 80915.1(ms)
+cpu test281	finished.
+gpu test281	started (n=2810).
+calculation time: 5763.82(ms)
+gpu test281	finished.
+cpu test282	started (n=2820).
+calculation time: 81760.2(ms)
+cpu test282	finished.
+gpu test282	started (n=2820).
+calculation time: 5677.89(ms)
+gpu test282	finished.
+cpu test283	started (n=2830).
+calculation time: 82741.9(ms)
+cpu test283	finished.
+gpu test283	started (n=2830).
+calculation time: 5570.18(ms)
+gpu test283	finished.
+cpu test284	started (n=2840).
+calculation time: 83426.1(ms)
+cpu test284	finished.
+gpu test284	started (n=2840).
+calculation time: 6174.59(ms)
+gpu test284	finished.
+cpu test285	started (n=2850).
+calculation time: 83923.7(ms)
+cpu test285	finished.
+gpu test285	started (n=2850).
+calculation time: 6257.69(ms)
+gpu test285	finished.
+cpu test286	started (n=2860).
+calculation time: 85191.2(ms)
+cpu test286	finished.
+gpu test286	started (n=2860).
+calculation time: 6489.29(ms)
+gpu test286	finished.
+cpu test287	started (n=2870).
+calculation time: 85991.1(ms)
+cpu test287	finished.
+gpu test287	started (n=2870).
+calculation time: 7181.1(ms)
+gpu test287	finished.
+cpu test288	started (n=2880).
+calculation time: 86653.5(ms)
+cpu test288	finished.
+gpu test288	started (n=2880).
+calculation time: 7256.74(ms)
+gpu test288	finished.
+cpu test289	started (n=2890).
+calculation time: 87565.7(ms)
+cpu test289	finished.
+gpu test289	started (n=2890).
+calculation time: 7226.7(ms)
+gpu test289	finished.
+cpu test290	started (n=2900).
+calculation time: 88653.3(ms)
+cpu test290	finished.
+gpu test290	started (n=2900).
+calculation time: 8362.79(ms)
+gpu test290	finished.
+cpu test291	started (n=2910).
+calculation time: 89548.1(ms)
+cpu test291	finished.
+gpu test291	started (n=2910).
+calculation time: 6162.89(ms)
+gpu test291	finished.
+cpu test292	started (n=2920).
+calculation time: 90526(ms)
+cpu test292	finished.
+gpu test292	started (n=2920).
+calculation time: 6733.02(ms)
+gpu test292	finished.
+cpu test293	started (n=2930).
+calculation time: 91206.4(ms)
+cpu test293	finished.
+gpu test293	started (n=2930).
+calculation time: 7024.95(ms)
+gpu test293	finished.
+cpu test294	started (n=2940).
+calculation time: 92414.5(ms)
+cpu test294	finished.
+gpu test294	started (n=2940).
+calculation time: 7092.32(ms)
+gpu test294	finished.
+cpu test295	started (n=2950).
+calculation time: 93414.8(ms)
+cpu test295	finished.
+gpu test295	started (n=2950).
+calculation time: 6350.21(ms)
+gpu test295	finished.
+cpu test296	started (n=2960).
+calculation time: 94151.8(ms)
+cpu test296	finished.
+gpu test296	started (n=2960).
+calculation time: 8297.22(ms)
+gpu test296	finished.
+cpu test297	started (n=2970).
+calculation time: 95061.2(ms)
+cpu test297	finished.
+gpu test297	started (n=2970).
+calculation time: 6937.51(ms)
+gpu test297	finished.
+cpu test298	started (n=2980).
+calculation time: 96244.4(ms)
+cpu test298	finished.
+gpu test298	started (n=2980).
+calculation time: 7027.28(ms)
+gpu test298	finished.
+cpu test299	started (n=2990).
+calculation time: 97413.8(ms)
+cpu test299	finished.
+gpu test299	started (n=2990).
+calculation time: 7092.14(ms)
+gpu test299	finished.
+cpu test300	started (n=3000).
+calculation time: 97894.5(ms)
+cpu test300	finished.
+gpu test300	started (n=3000).
+calculation time: 8487.27(ms)
+gpu test300	finished.
+cpu test301	started (n=3010).
+calculation time: 99093.5(ms)
+cpu test301	finished.
+gpu test301	started (n=3010).
+calculation time: 7199.53(ms)
+gpu test301	finished.
+cpu test302	started (n=3020).
+calculation time: 100120(ms)
+cpu test302	finished.
+gpu test302	started (n=3020).
+calculation time: 8203.41(ms)
+gpu test302	finished.
+cpu test303	started (n=3030).
+calculation time: 100918(ms)
+cpu test303	finished.
+gpu test303	started (n=3030).
+calculation time: 9041.49(ms)
+gpu test303	finished.
+cpu test304	started (n=3040).
+calculation time: 102367(ms)
+cpu test304	finished.
+gpu test304	started (n=3040).
+calculation time: 7529.59(ms)
+gpu test304	finished.
+cpu test305	started (n=3050).
+calculation time: 103166(ms)
+cpu test305	finished.
+gpu test305	started (n=3050).
+calculation time: 8195.95(ms)
+gpu test305	finished.
+cpu test306	started (n=3060).
+calculation time: 104262(ms)
+cpu test306	finished.
+gpu test306	started (n=3060).
+calculation time: 7388.83(ms)
+gpu test306	finished.
+cpu test307	started (n=3070).
+calculation time: 105141(ms)
+cpu test307	finished.
+gpu test307	started (n=3070).
+calculation time: 7330.12(ms)
+gpu test307	finished.
+cpu test308	started (n=3080).
+calculation time: 106129(ms)
+cpu test308	finished.
+gpu test308	started (n=3080).
+calculation time: 7920.37(ms)
+gpu test308	finished.
+cpu test309	started (n=3090).
+calculation time: 107348(ms)
+cpu test309	finished.
+gpu test309	started (n=3090).
+calculation time: 9539.63(ms)
+gpu test309	finished.
+cpu test310	started (n=3100).
+calculation time: 108339(ms)
+cpu test310	finished.
+gpu test310	started (n=3100).
+calculation time: 8923.08(ms)
+gpu test310	finished.
+cpu test311	started (n=3110).
+calculation time: 109022(ms)
+cpu test311	finished.
+gpu test311	started (n=3110).
+calculation time: 10158.6(ms)
+gpu test311	finished.
+cpu test312	started (n=3120).
+calculation time: 110466(ms)
+cpu test312	finished.
+gpu test312	started (n=3120).
+calculation time: 8020.27(ms)
+gpu test312	finished.
+cpu test313	started (n=3130).
+calculation time: 111439(ms)
+cpu test313	finished.
+gpu test313	started (n=3130).
+calculation time: 8831.33(ms)
+gpu test313	finished.
+cpu test314	started (n=3140).
+calculation time: 112704(ms)
+cpu test314	finished.
+gpu test314	started (n=3140).
+calculation time: 9191.03(ms)
+gpu test314	finished.
+cpu test315	started (n=3150).
+calculation time: 113378(ms)
+cpu test315	finished.
+gpu test315	started (n=3150).
+calculation time: 9495.33(ms)
+gpu test315	finished.
+cpu test316	started (n=3160).
+calculation time: 114548(ms)
+cpu test316	finished.
+gpu test316	started (n=3160).
+calculation time: 10515.8(ms)
+gpu test316	finished.
+cpu test317	started (n=3170).
+calculation time: 115586(ms)
+cpu test317	finished.
+gpu test317	started (n=3170).
+calculation time: 9031.15(ms)
+gpu test317	finished.
+cpu test318	started (n=3180).
+calculation time: 116616(ms)
+cpu test318	finished.
+gpu test318	started (n=3180).
+calculation time: 9272.14(ms)
+gpu test318	finished.
+cpu test319	started (n=3190).
+calculation time: 117519(ms)
+cpu test319	finished.
+gpu test319	started (n=3190).
+calculation time: 8889.89(ms)
+gpu test319	finished.
+cpu test320	started (n=3200).
+calculation time: 118588(ms)
+cpu test320	finished.
+gpu test320	started (n=3200).
+calculation time: 9221.17(ms)
+gpu test320	finished.
+cpu test321	started (n=3210).
+calculation time: 120037(ms)
+cpu test321	finished.
+gpu test321	started (n=3210).
+calculation time: 9677.34(ms)
+gpu test321	finished.
+cpu test322	started (n=3220).
+calculation time: 121373(ms)
+cpu test322	finished.
+gpu test322	started (n=3220).
+calculation time: 8826.51(ms)
+gpu test322	finished.
+cpu test323	started (n=3230).
+calculation time: 122234(ms)
+cpu test323	finished.
+gpu test323	started (n=3230).
+calculation time: 9657.66(ms)
+gpu test323	finished.
+cpu test324	started (n=3240).
+calculation time: 123297(ms)
+cpu test324	finished.
+gpu test324	started (n=3240).
+calculation time: 9629.39(ms)
+gpu test324	finished.
+cpu test325	started (n=3250).
+calculation time: 124446(ms)
+cpu test325	finished.
+gpu test325	started (n=3250).
+calculation time: 9371.58(ms)
+gpu test325	finished.
+cpu test326	started (n=3260).
+calculation time: 125693(ms)
+cpu test326	finished.
+gpu test326	started (n=3260).
+calculation time: 10056.3(ms)
+gpu test326	finished.
+cpu test327	started (n=3270).
+calculation time: 126994(ms)
+cpu test327	finished.
+gpu test327	started (n=3270).
+calculation time: 10090.1(ms)
+gpu test327	finished.
+cpu test328	started (n=3280).
+calculation time: 128146(ms)
+cpu test328	finished.
+gpu test328	started (n=3280).
+calculation time: 10373.9(ms)
+gpu test328	finished.
+cpu test329	started (n=3290).
+calculation time: 128873(ms)
+cpu test329	finished.
+gpu test329	started (n=3290).
+calculation time: 10814.3(ms)
+gpu test329	finished.
+cpu test330	started (n=3300).
+calculation time: 129952(ms)
+cpu test330	finished.
+gpu test330	started (n=3300).
+calculation time: 11371.4(ms)
+gpu test330	finished.
+cpu test331	started (n=3310).
+calculation time: 131791(ms)
+cpu test331	finished.
+gpu test331	started (n=3310).
+calculation time: 10511.5(ms)
+gpu test331	finished.
+cpu test332	started (n=3320).
+calculation time: 132954(ms)
+cpu test332	finished.
+gpu test332	started (n=3320).
+calculation time: 10784.4(ms)
+gpu test332	finished.
+cpu test333	started (n=3330).
+calculation time: 134119(ms)
+cpu test333	finished.
+gpu test333	started (n=3330).
+calculation time: 10404.1(ms)
+gpu test333	finished.
+cpu test334	started (n=3340).
+calculation time: 134972(ms)
+cpu test334	finished.
+gpu test334	started (n=3340).
+calculation time: 10449.1(ms)
+gpu test334	finished.
+cpu test335	started (n=3350).
+calculation time: 136307(ms)
+cpu test335	finished.
+gpu test335	started (n=3350).
+calculation time: 11582(ms)
+gpu test335	finished.
+cpu test336	started (n=3360).
+calculation time: 137274(ms)
+cpu test336	finished.
+gpu test336	started (n=3360).
+calculation time: 11191.8(ms)
+gpu test336	finished.
+cpu test337	started (n=3370).
+calculation time: 138924(ms)
+cpu test337	finished.
+gpu test337	started (n=3370).
+calculation time: 11786.1(ms)
+gpu test337	finished.
+cpu test338	started (n=3380).
+calculation time: 139604(ms)
+cpu test338	finished.
+gpu test338	started (n=3380).
+calculation time: 10401.4(ms)
+gpu test338	finished.
+cpu test339	started (n=3390).
+calculation time: 141313(ms)
+cpu test339	finished.
+gpu test339	started (n=3390).
+calculation time: 11023.2(ms)
+gpu test339	finished.
+cpu test340	started (n=3400).
+calculation time: 142754(ms)
+cpu test340	finished.
+gpu test340	started (n=3400).
+calculation time: 10985.9(ms)
+gpu test340	finished.
+cpu test341	started (n=3410).
+calculation time: 143985(ms)
+cpu test341	finished.
+gpu test341	started (n=3410).
+calculation time: 11686.3(ms)
+gpu test341	finished.
+cpu test342	started (n=3420).
+calculation time: 145186(ms)
+cpu test342	finished.
+gpu test342	started (n=3420).
+calculation time: 11990.6(ms)
+gpu test342	finished.
+cpu test343	started (n=3430).
+calculation time: 146400(ms)
+cpu test343	finished.
+gpu test343	started (n=3430).
+calculation time: 11475.1(ms)
+gpu test343	finished.
+cpu test344	started (n=3440).
+calculation time: 147699(ms)
+cpu test344	finished.
+gpu test344	started (n=3440).
+calculation time: 11913.1(ms)
+gpu test344	finished.
+cpu test345	started (n=3450).
+calculation time: 148896(ms)
+cpu test345	finished.
+gpu test345	started (n=3450).
+calculation time: 11793.5(ms)
+gpu test345	finished.
+cpu test346	started (n=3460).
+calculation time: 149750(ms)
+cpu test346	finished.
+gpu test346	started (n=3460).
+calculation time: 11143.2(ms)
+gpu test346	finished.
+cpu test347	started (n=3470).
+calculation time: 151272(ms)
+cpu test347	finished.
+gpu test347	started (n=3470).
+calculation time: 11322.5(ms)
+gpu test347	finished.
+cpu test348	started (n=3480).
+calculation time: 152708(ms)
+cpu test348	finished.
+gpu test348	started (n=3480).
+calculation time: 15877(ms)
+gpu test348	finished.
+cpu test349	started (n=3490).
+calculation time: 154171(ms)
+cpu test349	finished.
+gpu test349	started (n=3490).
+calculation time: 12468.8(ms)
+gpu test349	finished.
+cpu test350	started (n=3500).
+calculation time: 155397(ms)
+cpu test350	finished.
+gpu test350	started (n=3500).
+calculation time: 12384.1(ms)
+gpu test350	finished.
+cpu test351	started (n=3510).
+calculation time: 156504(ms)
+cpu test351	finished.
+gpu test351	started (n=3510).
+calculation time: 11641.9(ms)
+gpu test351	finished.
+cpu test352	started (n=3520).
+calculation time: 157989(ms)
+cpu test352	finished.
+gpu test352	started (n=3520).
+calculation time: 12396.5(ms)
+gpu test352	finished.
+cpu test353	started (n=3530).
+calculation time: 159468(ms)
+cpu test353	finished.
+gpu test353	started (n=3530).
+calculation time: 12225.6(ms)
+gpu test353	finished.
+cpu test354	started (n=3540).
+calculation time: 160720(ms)
+cpu test354	finished.
+gpu test354	started (n=3540).
+calculation time: 13034(ms)
+gpu test354	finished.
+cpu test355	started (n=3550).
+calculation time: 162212(ms)
+cpu test355	finished.
+gpu test355	started (n=3550).
+calculation time: 12566.1(ms)
+gpu test355	finished.
+cpu test356	started (n=3560).
+calculation time: 163206(ms)
+cpu test356	finished.
+gpu test356	started (n=3560).
+calculation time: 13473.4(ms)
+gpu test356	finished.
+cpu test357	started (n=3570).
+calculation time: 164762(ms)
+cpu test357	finished.
+gpu test357	started (n=3570).
+calculation time: 11954.3(ms)
+gpu test357	finished.
+cpu test358	started (n=3580).
+calculation time: 166395(ms)
+cpu test358	finished.
+gpu test358	started (n=3580).
+calculation time: 12428.6(ms)
+gpu test358	finished.
+cpu test359	started (n=3590).
+calculation time: 167595(ms)
+cpu test359	finished.
+gpu test359	started (n=3590).
+calculation time: 12888.5(ms)
+gpu test359	finished.
+cpu test360	started (n=3600).
+calculation time: 169137(ms)
+cpu test360	finished.
+gpu test360	started (n=3600).
+calculation time: 12354.3(ms)
+gpu test360	finished.
+cpu test361	started (n=3610).
+calculation time: 170466(ms)
+cpu test361	finished.
+gpu test361	started (n=3610).
+calculation time: 13272.8(ms)
+gpu test361	finished.
+cpu test362	started (n=3620).
+calculation time: 171833(ms)
+cpu test362	finished.
+gpu test362	started (n=3620).
+calculation time: 14336.3(ms)
+gpu test362	finished.
+cpu test363	started (n=3630).
+calculation time: 172905(ms)
+cpu test363	finished.
+gpu test363	started (n=3630).
+calculation time: 12423.9(ms)
+gpu test363	finished.
+cpu test364	started (n=3640).
+calculation time: 174897(ms)
+cpu test364	finished.
+gpu test364	started (n=3640).
+calculation time: 13108.8(ms)
+gpu test364	finished.
+cpu test365	started (n=3650).
+calculation time: 175956(ms)
+cpu test365	finished.
+gpu test365	started (n=3650).
+calculation time: 13588.8(ms)
+gpu test365	finished.
+cpu test366	started (n=3660).
+calculation time: 177687(ms)
+cpu test366	finished.
+gpu test366	started (n=3660).
+calculation time: 14940.7(ms)
+gpu test366	finished.
+cpu test367	started (n=3670).
+calculation time: 178745(ms)
+cpu test367	finished.
+gpu test367	started (n=3670).
+calculation time: 14019.1(ms)
+gpu test367	finished.
+cpu test368	started (n=3680).
+calculation time: 180202(ms)
+cpu test368	finished.
+gpu test368	started (n=3680).
+calculation time: 14196.7(ms)
+gpu test368	finished.
+cpu test369	started (n=3690).
+calculation time: 182160(ms)
+cpu test369	finished.
+gpu test369	started (n=3690).
+calculation time: 14203.8(ms)
+gpu test369	finished.
+cpu test370	started (n=3700).
+calculation time: 183695(ms)
+cpu test370	finished.
+gpu test370	started (n=3700).
+calculation time: 15959.3(ms)
+gpu test370	finished.
+cpu test371	started (n=3710).
+calculation time: 185137(ms)
+cpu test371	finished.
+gpu test371	started (n=3710).
+calculation time: 16011.6(ms)
+gpu test371	finished.
+cpu test372	started (n=3720).
+calculation time: 186655(ms)
+cpu test372	finished.
+gpu test372	started (n=3720).
+calculation time: 17068.8(ms)
+gpu test372	finished.
+cpu test373	started (n=3730).
+calculation time: 188008(ms)
+cpu test373	finished.
+gpu test373	started (n=3730).
+calculation time: 15256.8(ms)
+gpu test373	finished.
+cpu test374	started (n=3740).
+calculation time: 189387(ms)
+cpu test374	finished.
+gpu test374	started (n=3740).
+calculation time: 14613.2(ms)
+gpu test374	finished.
+cpu test375	started (n=3750).
+calculation time: 190882(ms)
+cpu test375	finished.
+gpu test375	started (n=3750).
+calculation time: 13798.5(ms)
+gpu test375	finished.
+cpu test376	started (n=3760).
+calculation time: 192662(ms)
+cpu test376	finished.
+gpu test376	started (n=3760).
+calculation time: 16640.2(ms)
+gpu test376	finished.
+cpu test377	started (n=3770).
+calculation time: 194084(ms)
+cpu test377	finished.
+gpu test377	started (n=3770).
+calculation time: 15676.9(ms)
+gpu test377	finished.
+cpu test378	started (n=3780).
+calculation time: 195881(ms)
+cpu test378	finished.
+gpu test378	started (n=3780).
+calculation time: 15383.9(ms)
+gpu test378	finished.
+cpu test379	started (n=3790).
+calculation time: 196445(ms)
+cpu test379	finished.
+gpu test379	started (n=3790).
+calculation time: 16335.5(ms)
+gpu test379	finished.
+cpu test380	started (n=3800).
+calculation time: 198629(ms)
+cpu test380	finished.
+gpu test380	started (n=3800).
+calculation time: 17728.1(ms)
+gpu test380	finished.
+cpu test381	started (n=3810).
+calculation time: 200286(ms)
+cpu test381	finished.
+gpu test381	started (n=3810).
+calculation time: 18736.7(ms)
+gpu test381	finished.
+cpu test382	started (n=3820).
+calculation time: 201731(ms)
+cpu test382	finished.
+gpu test382	started (n=3820).
+calculation time: 17007.4(ms)
+gpu test382	finished.
+cpu test383	started (n=3830).
+calculation time: 205722(ms)
+cpu test383	finished.
+gpu test383	started (n=3830).
+calculation time: 15602.2(ms)
+gpu test383	finished.
+cpu test384	started (n=3840).
+calculation time: 205087(ms)
+cpu test384	finished.
+gpu test384	started (n=3840).
+calculation time: 16727.1(ms)
+gpu test384	finished.
+cpu test385	started (n=3850).
+calculation time: 208028(ms)
+cpu test385	finished.
+gpu test385	started (n=3850).
+calculation time: 26438.2(ms)
+gpu test385	finished.
+cpu test386	started (n=3860).
+calculation time: 207805(ms)
+cpu test386	finished.
+gpu test386	started (n=3860).
+calculation time: 21483.4(ms)
+gpu test386	finished.
+cpu test387	started (n=3870).
+calculation time: 210163(ms)
+cpu test387	finished.
+gpu test387	started (n=3870).
+calculation time: 19475.5(ms)
+gpu test387	finished.
+cpu test388	started (n=3880).
+calculation time: 217371(ms)
+cpu test388	finished.
+gpu test388	started (n=3880).
+calculation time: 18635.9(ms)
+gpu test388	finished.
+cpu test389	started (n=3890).
+calculation time: 213637(ms)
+cpu test389	finished.
+gpu test389	started (n=3890).
+calculation time: 18062.8(ms)
+gpu test389	finished.
+cpu test390	started (n=3900).
+calculation time: 219058(ms)
+cpu test390	finished.
+gpu test390	started (n=3900).
+calculation time: 18761.7(ms)
+gpu test390	finished.
+cpu test391	started (n=3910).
+calculation time: 218636(ms)
+cpu test391	finished.
+gpu test391	started (n=3910).
+calculation time: 16554.3(ms)
+gpu test391	finished.
+cpu test392	started (n=3920).
+calculation time: 219395(ms)
+cpu test392	finished.
+gpu test392	started (n=3920).
+calculation time: 23840.2(ms)
+gpu test392	finished.
+cpu test393	started (n=3930).
+calculation time: 219767(ms)
+cpu test393	finished.
+gpu test393	started (n=3930).
+calculation time: 20410.1(ms)
+gpu test393	finished.
+cpu test394	started (n=3940).
+calculation time: 223001(ms)
+cpu test394	finished.
+gpu test394	started (n=3940).
+calculation time: 22591.7(ms)
+gpu test394	finished.
+cpu test395	started (n=3950).
+calculation time: 224012(ms)
+cpu test395	finished.
+gpu test395	started (n=3950).
+calculation time: 20249.5(ms)
+gpu test395	finished.
+cpu test396	started (n=3960).
+calculation time: 225242(ms)
+cpu test396	finished.
+gpu test396	started (n=3960).
+calculation time: 21153.3(ms)
+gpu test396	finished.
+cpu test397	started (n=3970).
+calculation time: 227297(ms)
+cpu test397	finished.
+gpu test397	started (n=3970).
+calculation time: 20972(ms)
+gpu test397	finished.
+cpu test398	started (n=3980).
+calculation time: 228653(ms)
+cpu test398	finished.
+gpu test398	started (n=3980).
+calculation time: 21037.5(ms)
+gpu test398	finished.
+cpu test399	started (n=3990).
+calculation time: 229881(ms)
+cpu test399	finished.
+gpu test399	started (n=3990).
+calculation time: 22760.1(ms)
+gpu test399	finished.
+cpu test400	started (n=4000).
+calculation time: 232744(ms)
+cpu test400	finished.
+gpu test400	started (n=4000).
+calculation time: 21959.4(ms)
+gpu test400	finished.
